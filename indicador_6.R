@@ -9,9 +9,8 @@ df_escola <- read.csv2(paste0(data_path, "/censo-", ano, "-escola.csv"), header 
 ############# Indicador 6A #############
 
 # selecionar colunas de interesse
-cols_int <- c("ID_MATRICULA", "CO_PESSOA_FISICA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
-              "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
-df_cols <- df_matricula[cols_int]
+df_cols <- df_matricula %>% select("ID_MATRICULA", "CO_PESSOA_FISICA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
+                                   "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
 
 # filtrar linhas
 df_alvo <- df_cols %>% filter(TP_DEPENDENCIA %in% c(1, 2, 3)) %>%
@@ -57,8 +56,7 @@ df_num_escolas_eti_true <- df_escolas_eti %>% count(ESC_ETI) %>%
 num_escolas_eti_total <- nrow(df_escolas_eti)
 num_escolas_eti_true  <- df_num_escolas_eti_true$n
 
-indicador_6B_nacional <- num_escolas_eti_true/num_escolas_eti_total
-
+indicador_6B_nacional <- (num_escolas_eti_true/num_escolas_eti_total)*100
 
 ############# Output #############
 

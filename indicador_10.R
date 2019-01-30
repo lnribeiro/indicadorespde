@@ -8,8 +8,7 @@ df_matricula <- read.csv2(paste0(data_path, "/censo-", ano, "-matricula.csv"), h
 ############# Indicador 10 #############
 
 # selecionar colunas de interesse
-cols_int <- c("IN_EJA", "TP_ETAPA_ENSINO")
-df_cols <- df_matricula[cols_int]
+df_cols <- df_matricula %>% select("IN_EJA", "TP_ETAPA_ENSINO")
 
 # filtrar linhas
 df_eja <- df_cols %>% filter(IN_EJA == 1)
