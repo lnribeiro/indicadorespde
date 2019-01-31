@@ -1,7 +1,7 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- "./dados"
+data_path <- path.expand("~/lab/pde_indices/dados")
 ano <- "2016"
 df_matricula <- read.csv2(paste0(data_path, "/censo-", ano, "-matricula.csv"), header = TRUE, sep = ";")
 
