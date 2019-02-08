@@ -2,10 +2,7 @@ require(dplyr)
 
 ############# Ler csvs #############
 data_path <- path.expand("~/lab/pde_indices/dados")
-
-ano <- "2016"
-trimestre <- "1q"
-df <- read.csv2(paste0(data_path, "/pnadc-", ano, "-", trimestre, ".csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
+df <- read.csv2(paste0(data_path, "/pnadc-2018-1q.csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
 
 ######## Indicador 3A ########
 

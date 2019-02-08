@@ -2,9 +2,8 @@ require(dplyr)
 
 ############# Ler csvs #############
 data_path <- path.expand("~/lab/pde_indices/dados")
-ano <- "2016"
-df_matricula <- read.csv2(paste0(data_path, "/censo-", ano, "-matricula.csv"), header = TRUE, sep = ";")
-df_escola <- read.csv2(paste0(data_path, "/censo-", ano, "-escola.csv"), header = TRUE, sep = ";")
+df_matricula <- read.csv2(paste0(data_path, "/censo-2016-matricula.csv"), header = TRUE, sep = ";")
+df_escola <- read.csv2(paste0(data_path, "/censo-2016-escola.csv"), header = TRUE, sep = ";")
 
 ############# Indicador 6A #############
 
@@ -60,7 +59,6 @@ indicador_6B_nacional <- (num_escolas_eti_true/num_escolas_eti_total)*100
 
 ############# Output #############
 
-print(paste("Ano:", ano))
 print(paste("Indicador 6A: ", indicador_6A))
 print(paste("Indicador 6B: ", indicador_6B))
 print(paste("Indicador 6B nacional: ", indicador_6B_nacional))
