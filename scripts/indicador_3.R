@@ -32,7 +32,7 @@ num <- sum(as.numeric(df_dummies_15_17_term$V1028))
 indicador_3A <- num/tot
 print(indicador_3A)
 
-# ######## Indicador 3B ############
+######### Indicador 3B ############
 
 # criação das variáveis dummy
 df_dummies_b <- df %>% select(Ano, RM_RIDE, V1023, UF, V2007, V20081, V20082, V2009, V2010, V3002, V3003A, V3008, V3009A, V3014, V1028, V1022) %>%
