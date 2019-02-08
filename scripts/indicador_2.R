@@ -26,7 +26,6 @@ df_dummies_6_14 <- df_dummies %>% filter(RM_RIDE == 26) %>%
 
 df_dummies_6_14_term <- df_dummies_6_14 %>% filter(V2A == TRUE)
 
-
 tot <- sum(as.numeric(df_dummies_6_14$V1028))
 num <- sum(as.numeric(df_dummies_6_14_term$V1028))
 
@@ -34,4 +33,11 @@ indicador_2A <- num/tot
 
 print(indicador_2A)
 
+######## Indicador 2B ############
+
+df_dummies_16 <- df_dummies %>% filter(RM_RIDE == 26) %>%
+  filter(V1023 == 1) %>%
+  filter(V2009 == 16)
+
+df_dummies_16_term <- df_dummies_16 %>% filter(V2A == TRUE)
 
