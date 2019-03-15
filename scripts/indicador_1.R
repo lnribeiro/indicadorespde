@@ -1,8 +1,9 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- path.expand("~/lab/pde_indices/dados")
-df <- read.csv2(paste0(data_path, "/pnadc-2018-1q.csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
+# data_path <- path.expand("~/lab/pde_indices/dados")
+data_path <- path.expand("C:/Users/lnr46/Documents/PNAD-Analysis/pde_indices/dados")
+df <- read.csv2(paste0(data_path, "/pnadc-2016-1q.csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
 
 ######## Indicador 1A ########
 df_criancas <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, V3002, V1028, Estrato, UPA) %>%

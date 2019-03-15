@@ -1,14 +1,14 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- path.expand("~/lab/pde_indices/dados")
-df_matricula <- read.csv2(paste0(data_path, "/censo-2016-matricula.csv"), header = TRUE, sep = ";")
-df_escola <- read.csv2(paste0(data_path, "/censo-2016-escola.csv"), header = TRUE, sep = ";")
+data_path <- path.expand("C:/Users/lnr46/Documents/PNAD-Analysis/pde_indices/dados")
+df_matricula <- read.csv2(paste0(data_path, "/censo-2018-matricula.csv"), header = TRUE, sep = ";")
+df_escola <- read.csv2(paste0(data_path, "/censo-2018-escola.csv"), header = TRUE, sep = ";")
 
 ############# Indicador 6A #############
 
 # selecionar colunas de interesse
-df_cols <- df_matricula %>% select("ID_MATRICULA", "CO_PESSOA_FISICA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
+df_cols <- df_matricula %>% select("ID_MATRICULA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
                                    "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
 
 # filtrar linhas

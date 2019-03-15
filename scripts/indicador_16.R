@@ -1,9 +1,8 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- path.expand("~/lab/pde_indices/dados")
-ano <- "2016"
-df_docentes <- read.csv2(paste0(data_path, "/censo-", ano, "-docente.csv"), header = TRUE, sep = ";")
+data_path <- path.expand("C:/Users/lnr46/Documents/PNAD-Analysis/pde_indices/dados")
+df_docentes <- read.csv2(paste0(data_path, "/censo-2018-docente.csv"), header = TRUE, sep = ";")
 
 ############# Indicador 16 #############
 

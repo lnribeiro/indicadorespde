@@ -1,9 +1,9 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- path.expand("~/lab/pde_indices/dados")
-ano <- "2016"
-df_matricula <- read.csv2(paste0(data_path, "/censo-", ano, "-matricula.csv"), header = TRUE, sep = ";")
+data_path <- path.expand("C:/Users/lnr46/Documents/PNAD-Analysis/pde_indices/dados")
+df_matricula <- read.csv2(paste0(data_path, "/censo-2017-matricula.csv"), header = TRUE, sep = ";")
+df_escola <- read.csv2(paste0(data_path, "/censo-2017-escola.csv"), header = TRUE, sep = ";")
 
 ############# Indicador 10 #############
 
@@ -28,5 +28,4 @@ for (etapa in etapas_integradas) {
 num_matriculas_eja <- nrow(df_eja)
 
 indicador_10 <- (num_matriculas_integradas/num_matriculas_eja)*100
-print(paste("Ano:", ano))
 print(paste("Indicador 10:", indicador_10))

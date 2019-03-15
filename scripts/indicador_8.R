@@ -1,11 +1,12 @@
 require(dplyr)
 
 ############# Ler csvs #############
-data_path <- path.expand("~/lab/pde_indices/dados")
-df <- read.csv2(paste0(data_path, "/pnadc-2016-1q.csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
+# data_path <- path.expand("~/lab/pde_indices/dados")
+data_path <- path.expand("C:/Users/lnr46/Documents/PNAD-Analysis/pde_indices/dados")
+df <- read.csv2(paste0(data_path, "/pnadc-2018-1q.csv"), header = TRUE, sep = ",", colClasses=c("V1028"="character"))
 
 # V1028 --> V1032!!
-df_anual <- read.csv2(paste0(data_path, "/pnadc-2016-anual-1v.csv"), header = TRUE, sep = ",", colClasses=c("V1032"="character"))
+df_anual <- read.csv2(paste0(data_path, "/pnadc-2017-anual-1v.csv"), header = TRUE, sep = ",", colClasses=c("V1032"="character"))
 
 
 ######## Indicador 8A ########
