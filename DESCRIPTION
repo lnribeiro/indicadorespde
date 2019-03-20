@@ -1,0 +1,11 @@
+Package: indicadorespde
+Type: Package
+Title: Calculates the Plano de Desenvolvimento Educacional (PDE) Indicators
+Version: 0.1.0
+Author@R: person("Lucas", "Nogueira Ribeiro", email = "lucasnogrib@gmail.com", role = c("aut", "cre"))
+Description: Calculates the Plano de Desenvolvimento Educacional (PDE) Indicators
+License: MIT
+Imports:
+  dplyr
+Encoding: UTF-8
+LazyData: true
