@@ -1,3 +1,9 @@
+#' Calcula o indicador 17: "Razão entre salários dos professores da educação básica, na rede pública (não federal), e não professores, com escolaridade equivalente"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 17 em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_17 <- function(df) {
   # (1) Primeiro seleciona pessoas com carga horaria entre 10 e 60
   df_select <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, V3002, V1028, V403312, V4039, VD3001, V4014, V4010, V4012,  Estrato, UPA) %>%
@@ -20,7 +26,7 @@ calc_indicador_17 <- function(df) {
   # (5) calcula-se rendimento médio dos demais profissionais
   rend_medio_sup <- (sum(df_sup$V403312))/sum(df_sup$V4039) * 40
 
-  indicador_17 <- rend_medio_prof/rend_medio_sup
+  indicador_17 <- (rend_medio_prof/rend_medio_sup)*100
 
   return(indicador_17)
 }

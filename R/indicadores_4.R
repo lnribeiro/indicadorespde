@@ -1,3 +1,9 @@
+#' Calcula o indicador 4: "Percentual da população de 4 a 17 anos com deficiência que frequenta a escola"
+#'
+#' @param df DataFrame com dados carregados do Censo Demográfico de Pernambuco
+#' @return Indicador 4 em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_4 <- function(df) {
   # converte V0010[char] para variável de peso no formato double
   df_peso <- df %>% mutate(peso = as.numeric(V0010)/1e13)
@@ -14,7 +20,7 @@ calc_indicador_4 <- function(df) {
   num_total_ponderado <- sum(df_alvo$peso)
   # num_escola_ponderado <- nrow(df_alvo_escola)
   # num_total_ponderado <- nrow(df_alvo)
-  indicador_4 <- num_escola_ponderado/num_total_ponderado
+  indicador_4 <- (num_escola_ponderado/num_total_ponderado)*100
 
   return(indicador_4)
 }

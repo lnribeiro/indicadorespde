@@ -1,3 +1,9 @@
+#' Calcula o indicador 3A: "Percentual da população de 15 a 17 anos que frequenta a escola"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 3A em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_3A <- function(df) {
   df_dummies <- df %>% select(Ano, RM_RIDE, V1023, UF, V2007, V20081, V20082, V2009, V2010, V3002, V3003A, V3008, V3009A, V3014, V1028, V1022) %>%
     mutate(idade_cne = V2009) %>%
@@ -17,11 +23,17 @@ calc_indicador_3A <- function(df) {
 
   tot <- sum(as.numeric(df_dummies_15_17$V1028))
   num <- sum(as.numeric(df_dummies_15_17_term$V1028))
-  indicador_3A <- num/tot
+  indicador_3A <- (num/tot)*100
 
   return(indicador_3A)
 }
 
+#' Calcula o indicador 3B: "Taxa líquida de matrícula no Ensino Médio"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 3B em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_3B <- function(df) {
   df_dummies_b <- df %>% select(Ano, RM_RIDE, V1023, UF, V2007, V20081, V20082, V2009, V2010, V3002, V3003A, V3008, V3009A, V3014, V1028, V1022) %>%
     mutate(idade_cne = V2009) %>%
@@ -41,7 +53,7 @@ calc_indicador_3B <- function(df) {
 
   tot <- sum(as.numeric(df_dummies_15_17_b$V1028))
   num <- sum(as.numeric(df_dummies_15_17_term_b$V1028))
-  indicador_3B <- num/tot
+  indicador_3B <- (num/tot)*100
 
   return(indicador_3B)
 }

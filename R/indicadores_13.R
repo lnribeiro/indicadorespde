@@ -1,3 +1,11 @@
+#' Calcula o indicador 13A: "Percentual de funções docentes na educação superior com mestrado e doutorado"
+#'
+#' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
+#' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
+#' @param periodo Ano do censo
+#' @return Indicador 13A em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_13A <- function(df_docentes, df_ies, periodo) {
   if (periodo == 2016) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)
@@ -20,6 +28,14 @@ calc_indicador_13A <- function(df_docentes, df_ies, periodo) {
   return(indicador_13A)
 }
 
+#' Calcula o indicador 13B: "Percentual de funções docentes na educação superior com doutorado"
+#'
+#' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
+#' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
+#' @param periodo Ano do censo
+#' @return Indicador 13B em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_13B <- function(df_docentes, df_ies, periodo) {
   if (periodo == 2016) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)

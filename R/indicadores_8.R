@@ -1,3 +1,9 @@
+#' Calcula o indicador 8A: "Escolaridade média da população de 18 a 29 anos"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 8A
+#' @import dplyr
+#' @export
 calc_indicador_8A <- function(df) {
   df_alvo <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, VD3002, V1028, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
@@ -13,6 +19,12 @@ calc_indicador_8A <- function(df) {
   return(indicador_8A)
 }
 
+#' Calcula o indicador 8B: "Escolaridade média da população de 18 a 29 anos de idade residentes em áreas com habitantes de menor escolaridade"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 8B
+#' @import dplyr
+#' @export
 calc_indicador_8B <- function(df) {
   df_alvo <- df %>% select(Ano, UF, Capital, RM_RIDE, V1022, V2007, V2009, VD3002, V1028, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
@@ -28,6 +40,13 @@ calc_indicador_8B <- function(df) {
   return(indicador_8B)
 }
 
+#' Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @return Indicador 8C em porcentagem
+#' @import dplyr
+#' @importFrom stats quantile
+#' @export
 calc_indicador_8C <- function(df_anual) {
   df_anual_recife <- df_anual %>% select(Ano, UF, Capital, RM_RIDE, V1022, V1023, V2007, V2009, VD3002, V1032, VD5005, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
@@ -53,6 +72,12 @@ calc_indicador_8C <- function(df_anual) {
   return(indicador_8C)
 }
 
+#' Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"
+#'
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @return Indicador 8D em porcentagem
+#' @import dplyr
+#' @export
 calc_indicador_8D <- function(df) {
   ## pop. preta ##
   df_preta <- df %>% select(Ano, UF, Capital, RM_RIDE, V2010, V1023, V2007, V2009, VD3002, V1028, Estrato, UPA) %>%
@@ -80,7 +105,7 @@ calc_indicador_8D <- function(df) {
   total_anos_populacao_ponderado_branca <- sum(as.numeric(df_branca$V1028))
   indicador_8D_branca <- total_anos_estudo_ponderado_branca/total_anos_populacao_ponderado_branca
 
-  indicador_8D <- indicador_8D_preta/indicador_8D_branca
+  indicador_8D <- (indicador_8D_preta/indicador_8D_branca)*100
 
   return(indicador_8D)
 }
