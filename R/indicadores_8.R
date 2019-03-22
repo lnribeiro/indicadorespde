@@ -9,11 +9,11 @@ calc_indicador_8A <- function(df) {
     filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
     filter(V2009 >= 18 & V2009 <= 29) %>%
-    filter(!is.na(VD3002)) %>%
-    mutate(anos_estudo_ponderado = VD3002*as.numeric(V1028))
+    filter(VD3002 != "") %>%
+    mutate(anos_estudo_ponderado = as.numeric(VD3002)*V1028)
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
-  total_anos_populacao_ponderado <- sum(as.numeric(df_alvo$V1028))
+  total_anos_populacao_ponderado <- sum(df_alvo$V1028)
   indicador_8A <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
 
   return(indicador_8A)
@@ -30,11 +30,11 @@ calc_indicador_8B <- function(df) {
     filter(RM_RIDE == 26) %>%
     filter(V1022 == 2) %>%
     filter(V2009 >= 18 & V2009 <= 29) %>%
-    filter(!is.na(VD3002)) %>%
-    mutate(anos_estudo_ponderado = VD3002*as.numeric(V1028))
+    filter(VD3002 != "") %>%
+    mutate(anos_estudo_ponderado = as.numeric(VD3002)*V1028)
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
-  total_anos_populacao_ponderado <- sum(as.numeric(df_alvo$V1028))
+  total_anos_populacao_ponderado <- sum(df_alvo$V1028)
   indicador_8B <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
 
   return(indicador_8B)
@@ -62,11 +62,11 @@ calc_indicador_8C <- function(df_anual) {
 
   # filtra para população alvo...
   df_alvo <- df_anual_recife_quartil %>% filter(V2009 >= 18 & V2009 <= 29) %>%
-    filter(!is.na(VD3002)) %>%
-    mutate(anos_estudo_ponderado = VD3002*as.numeric(V1032))
+    filter(VD3002 != "") %>%
+    mutate(anos_estudo_ponderado = as.numeric(VD3002)*V1032)
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
-  total_anos_populacao_ponderado <- sum(as.numeric(df_alvo$V1032))
+  total_anos_populacao_ponderado <- sum(df_alvo$V1032)
   indicador_8C <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
 
   return(indicador_8C)
