@@ -85,11 +85,11 @@ calc_indicador_8D <- function(df) {
     filter(V1023 == 1) %>%
     filter(V2010 == 2 | V2010 == 4) %>% # preta ou parda
     filter(V2009 >= 18 & V2009 <= 29) %>%
-    filter(!is.na(VD3002)) %>%
-    mutate(anos_estudo_ponderado = VD3002*as.numeric(V1028))
+    filter(VD3002 != "") %>%
+    mutate(anos_estudo_ponderado = as.numeric(VD3002)*V1028)
 
   total_anos_estudo_ponderado_preta <- sum(df_preta$anos_estudo_ponderado)
-  total_anos_populacao_ponderado_preta <- sum(as.numeric(df_preta$V1028))
+  total_anos_populacao_ponderado_preta <- sum(df_preta$V1028)
   indicador_8D_preta <- total_anos_estudo_ponderado_preta/total_anos_populacao_ponderado_preta
 
   ## pop. branca ##
@@ -98,11 +98,11 @@ calc_indicador_8D <- function(df) {
     filter(V1023 == 1) %>%
     filter(V2010 == 1 | V2010 == 3) %>% # branca ou amarela
     filter(V2009 >= 18 & V2009 <= 29) %>%
-    filter(!is.na(VD3002)) %>%
-    mutate(anos_estudo_ponderado = VD3002*as.numeric(V1028))
+    filter(VD3002 != "") %>%
+    mutate(anos_estudo_ponderado = as.numeric(VD3002)*V1028)
 
   total_anos_estudo_ponderado_branca <- sum(df_branca$anos_estudo_ponderado)
-  total_anos_populacao_ponderado_branca <- sum(as.numeric(df_branca$V1028))
+  total_anos_populacao_ponderado_branca <- sum(df_branca$V1028)
   indicador_8D_branca <- total_anos_estudo_ponderado_branca/total_anos_populacao_ponderado_branca
 
   indicador_8D <- (indicador_8D_preta/indicador_8D_branca)*100
