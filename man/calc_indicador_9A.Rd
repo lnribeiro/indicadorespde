@@ -2,7 +2,7 @@
 % Please edit documentation in R/indicadores_9.R
 \name{calc_indicador_9A}
 \alias{calc_indicador_9A}
-\title{Calcula o indicador 9A: "Escolaridade média da população de 18 a 29 anos"}
+\title{Calcula o indicador 9A: "Taxa de alfabetização da população de 15 anos ou mais de idade"}
 \usage{
 calc_indicador_9A(df)
 }
@@ -13,5 +13,5 @@ calc_indicador_9A(df)
 Indicador 9A em porcentagem
 }
 \description{
-Calcula o indicador 9A: "Escolaridade média da população de 18 a 29 anos"
+Calcula o indicador 9A: "Taxa de alfabetização da população de 15 anos ou mais de idade"
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/indicadores_5.R
 \name{calc_indicador_5B}
 \alias{calc_indicador_5B}
-\title{Calcula o indicador 5B: "Proficiência dos alunos do 3o ano do ensino fundamental em Escrita"}
+\title{Calcula o indicador 5B: "Taxa de estudantes com proficiência insuficiente em Escrita"}
 \usage{
 calc_indicador_5B(df)
 }
@@ -13,5 +13,5 @@ calc_indicador_5B(df)
 Indicador 5B em porcentagem
 }
 \description{
-Calcula o indicador 5B: "Proficiência dos alunos do 3o ano do ensino fundamental em Escrita"
+Calcula o indicador 5B: "Taxa de estudantes com proficiência insuficiente em Escrita"
 }
