@@ -28,5 +28,9 @@ calc_indicador_17 <- function(df) {
 
   indicador_17 <- (rend_medio_prof/rend_medio_sup)*100
 
+  print(paste0("Rendimento médio professores [norm. 40h/semanais]: ", rend_medio_prof))
+  print(paste0("Rendimento médio outros profissionais [norm. 40h/semanais]: ", rend_medio_sup))
+  print(paste0("Indicador 17: ", indicador_17))
+
   return(indicador_17)
 }
