@@ -109,6 +109,10 @@ calc_indicador <- function(indicador, arg1, arg2, arg3) {
            periodo <- arg3
            calc_indicador_13B(df_docentes, df_ies, periodo)
          },
+         # "15B" = {
+         #   df_docentes <- arg1
+         #   calc_indicador_15B(df_docentes)
+         # },
          "16" = {
            df_docentes <- arg1
            calc_indicador_16(df_docentes)

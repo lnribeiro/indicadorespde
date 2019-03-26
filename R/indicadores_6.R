@@ -28,8 +28,8 @@ calc_indicador_6A <- function(df_matricula) {
   num_eti_escolas <- df_alvo_eti %>% count(CO_ENTIDADE) %>% nrow
   indicador_6A <- (num_eti_escolas/num_total_escolas)*100
 
-  print(paste0("# total escolas públicas: ", num_total_escolas))
-  print(paste0("# total escolas públicas com estudantes de 7h em atividades: ", num_eti_escolas))
+  print(paste0("# total escolas publicas: ", num_total_escolas))
+  print(paste0("# total escolas publicas com estudantes de 7h em atividades: ", num_eti_escolas))
   print(paste0("Indicador 6A: ", indicador_6A))
 
   return(indicador_6A)
