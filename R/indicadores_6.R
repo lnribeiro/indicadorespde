@@ -24,7 +24,7 @@ calc_indicador_6A <- function(df_matricula) {
   # seleciona matriculas de tempo integral
   df_alvo_eti <- df_alvo_jornada %>% filter(ETI == TRUE)
 
-  num_total_escolas <- df_matricula %>% count(CO_ENTIDADE) %>% nrow
+  num_total_escolas <- df_alvo %>% count(CO_ENTIDADE) %>% nrow
   num_eti_escolas <- df_alvo_eti %>% count(CO_ENTIDADE) %>% nrow
   indicador_6A <- (num_eti_escolas/num_total_escolas)*100
 
