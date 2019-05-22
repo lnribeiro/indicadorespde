@@ -4,10 +4,12 @@
 \alias{calc_indicador_15B}
 \title{Calcula o indicador 15B: "Percentual de docentes e de profissionais de apoio à docência da educação básica com formação específica de nível superior, obtida em curso de licenciatura na área de conhecimento em que atuam"}
 \usage{
-calc_indicador_15B(df_docente)
+calc_indicador_15B(df_docente, verbose = TRUE)
 }
 \arguments{
 \item{df_docente}{DataFrame com dados carregados da tabela "docentes" do Censo da Educação Básica}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 15B em porcentagem

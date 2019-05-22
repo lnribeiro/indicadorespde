@@ -3,10 +3,11 @@
 #' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
 #' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
 #' @param periodo Ano do censo
+#' @param verbose exibe informações no console se True
 #' @return Indicador 13A em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_13A <- function(df_docentes, df_ies, periodo) {
+calc_indicador_13A <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
   if (periodo == 2016) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
@@ -25,6 +26,12 @@ calc_indicador_13A <- function(df_docentes, df_ies, periodo) {
   num_total <- nrow(df_alvo)
   indicador_13A <- (num_mest_dout/num_total)*100
 
+  if (verbose == TRUE) {
+    print(sprintf("Número de mestres e doutores: %f", num_mest_dout))
+    print(sprintf("Número total docentes: %f", num_total))
+    print(sprintf("Indicador 13A: %f", indicador_13A))
+  }
+
   return(indicador_13A)
 }
 
@@ -36,7 +43,7 @@ calc_indicador_13A <- function(df_docentes, df_ies, periodo) {
 #' @return Indicador 13B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_13B <- function(df_docentes, df_ies, periodo) {
+calc_indicador_13B <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
   if (periodo == 2016) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
@@ -54,6 +61,12 @@ calc_indicador_13B <- function(df_docentes, df_ies, periodo) {
   num_dout <- nrow(df_dout)
   num_total <- nrow(df_alvo)
   indicador_13B <- (num_dout/num_total)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("Número de doutores: %f", num_dout))
+    print(sprintf("Número total docentes: %f", num_total))
+    print(sprintf("Indicador 13B: %f", indicador_13B))
+  }
 
   return(indicador_13B)
 }

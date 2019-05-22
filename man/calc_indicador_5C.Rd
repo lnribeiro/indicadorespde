@@ -4,10 +4,12 @@
 \alias{calc_indicador_5C}
 \title{Calcula o indicador 5C: "Taxa de estudantes com proficiência insuficiente em Matemática"}
 \usage{
-calc_indicador_5C(df)
+calc_indicador_5C(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da Avaliação Nacional da Alfabetização}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 5C em porcentagem

@@ -1,10 +1,11 @@
 #' Calcula o indicador 6A: "Percentual de escolas públicas com estudantes que permanecem pelo menos 7h em atividades escolares"
 #'
 #' @param df_matricula DataFrame com dados carregados do Censo Escolar
+#' @param verbose exibe informações no console se True
 #' @return Indicador 6A em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_6A <- function(df_matricula) {
+calc_indicador_6A <- function(df_matricula, verbose = TRUE) {
   # selecionar colunas de interesse
   df_cols <- df_matricula %>% select("ID_MATRICULA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
                                      "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
@@ -28,9 +29,11 @@ calc_indicador_6A <- function(df_matricula) {
   num_eti_escolas <- df_alvo_eti %>% count(CO_ENTIDADE) %>% nrow
   indicador_6A <- (num_eti_escolas/num_total_escolas)*100
 
-  print(paste0("# total escolas publicas: ", num_total_escolas))
-  print(paste0("# total escolas publicas com estudantes de 7h em atividades: ", num_eti_escolas))
-  print(paste0("Indicador 6A: ", indicador_6A))
+  if (verbose == TRUE) {
+    print(sprintf("número total escolas públicas: %f", num_total_escolas))
+    print(sprintf("número total escolas públicas com estudantes de 7h em atividades: %f", num_eti_escolas))
+    print(sprintf("Indicador 6A: %f", indicador_6A))
+  }
 
   return(indicador_6A)
 }
@@ -38,10 +41,11 @@ calc_indicador_6A <- function(df_matricula) {
 #' Calcula o indicador 6B: "Percentual de estudantes que permanecem pelo menos 7h em atividades escolares"
 #'
 #' @param df_matricula DataFrame com dados carregados do Censo Escolar
+#' @param verbose exibe informações no console se True
 #' @return Indicador 6B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_6B <- function(df_matricula) {
+calc_indicador_6B <- function(df_matricula, verbose = TRUE) {
   # selecionar colunas de interesse
   df_cols <- df_matricula %>% select("ID_MATRICULA", "CO_ENTIDADE", "CO_MUNICIPIO", "TP_MEDIACAO_DIDATICO_PEDAGO", "TP_DEPENDENCIA", "TP_ETAPA_ENSINO",
                                      "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
@@ -61,9 +65,11 @@ calc_indicador_6B <- function(df_matricula) {
   df_alvo_eti <- df_alvo_jornada %>% filter(ETI == TRUE)
   indicador_6B <- (nrow(df_alvo_eti)/nrow(df_alvo))*100
 
-  print(paste0("# total alunos: ", nrow(df_alvo)))
-  print(paste0("# total alunos que permanecem pelo menos 7h: ", nrow(df_alvo_eti)))
-  print(paste0("Indicador 6B: ", indicador_6B))
+  if (verbose == TRUE) {
+    print(sprintf("# total alunos: %f", nrow(df_alvo)))
+    print(sprintf("# total alunos que permanecem pelo menos 7h: %f", nrow(df_alvo_eti)))
+    print(sprintf("Indicador 6B: %f", indicador_6B))
+  }
 
   return(indicador_6B)
 }

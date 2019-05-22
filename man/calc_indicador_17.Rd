@@ -4,10 +4,12 @@
 \alias{calc_indicador_17}
 \title{Calcula o indicador 17: "Razão entre salários dos professores da educação básica, na rede pública (não federal), e não professores, com escolaridade equivalente"}
 \usage{
-calc_indicador_17(df)
+calc_indicador_17(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 17 em porcentagem

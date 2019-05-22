@@ -2,10 +2,11 @@
 #'
 #' @param df_matricula DataFrame com dados da tabela "matricula" carregados do Censo Escolar
 #' @param df_escola DataFrame com dados da tabela "escola" carregados do Censo Escolar
+#' @param verbose exibe informações no console se True
 #' @return Indicador 10 em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_10 <- function(df_matricula, df_escola) {
+calc_indicador_10 <- function(df_matricula, df_escola, verbose = TRUE) {
   # selecionar colunas de interesse
   df_cols <- df_matricula %>% select("IN_EJA", "TP_ETAPA_ENSINO")
 
@@ -26,6 +27,12 @@ calc_indicador_10 <- function(df_matricula, df_escola) {
 
   num_matriculas_eja <- nrow(df_eja)
   indicador_10 <- (num_matriculas_integradas/num_matriculas_eja)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("Número de matrículas EJA integrada: %f", num_matriculas_integradas))
+    print(sprintf("Número de matrículas EJA: %f", num_matriculas_eja))
+    print(sprintf("Indicador 10: %f", indicador_10))
+  }
 
   return(indicador_10)
 }

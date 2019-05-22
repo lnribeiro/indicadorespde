@@ -4,10 +4,12 @@
 \alias{calc_indicador_16}
 \title{Calcula o indicador 16: "Percentual de professores da educação básica com pós-graduação lato sensu ou stricto senso"}
 \usage{
-calc_indicador_16(df_docentes)
+calc_indicador_16(df_docentes, verbose = TRUE)
 }
 \arguments{
 \item{df_docentes}{DataFrame com dados carregados da tabela "docentes" do Censo Escolar}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 16 em porcentagem

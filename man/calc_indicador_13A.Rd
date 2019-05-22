@@ -4,7 +4,7 @@
 \alias{calc_indicador_13A}
 \title{Calcula o indicador 13A: "Percentual de funções docentes na educação superior com mestrado e doutorado"}
 \usage{
-calc_indicador_13A(df_docentes, df_ies, periodo)
+calc_indicador_13A(df_docentes, df_ies, periodo, verbose = TRUE)
 }
 \arguments{
 \item{df_docentes}{DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior}
@@ -12,6 +12,8 @@ calc_indicador_13A(df_docentes, df_ies, periodo)
 \item{df_ies}{DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior}
 
 \item{periodo}{Ano do censo}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 13A em porcentagem

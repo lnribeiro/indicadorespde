@@ -4,10 +4,12 @@
 \alias{calc_indicador_8C}
 \title{Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"}
 \usage{
-calc_indicador_8C(df_anual)
+calc_indicador_8C(df_anual, verbose = TRUE)
 }
 \arguments{
 \item{df_anual}{DataFrame com dados carregados da PNAD Contínua anual}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 8C em porcentagem

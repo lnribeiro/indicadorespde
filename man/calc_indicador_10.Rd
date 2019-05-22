@@ -4,12 +4,14 @@
 \alias{calc_indicador_10}
 \title{Calcula o indicador 10: "Percentual de matrículas de educação de jovens e adultos na forma integrada à educação profissional"}
 \usage{
-calc_indicador_10(df_matricula, df_escola)
+calc_indicador_10(df_matricula, df_escola, verbose = TRUE)
 }
 \arguments{
 \item{df_matricula}{DataFrame com dados da tabela "matricula" carregados do Censo Escolar}
 
 \item{df_escola}{DataFrame com dados da tabela "escola" carregados do Censo Escolar}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 10 em porcentagem

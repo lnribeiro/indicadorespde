@@ -51,10 +51,11 @@ checa_coerencia_disciplina_curso <- function(disc, codcurso) {
 #' Calcula o indicador 15B: "Percentual de docentes e de profissionais de apoio à docência da educação básica com formação específica de nível superior, obtida em curso de licenciatura na área de conhecimento em que atuam"
 #'
 #' @param df_docente DataFrame com dados carregados da tabela "docentes" do Censo da Educação Básica
+#' @param verbose exibe informações no console se True
 #' @return Indicador 15B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_15B <- function(df_docente) {
+calc_indicador_15B <- function(df_docente, verbose = TRUE) {
   # seleciona apenas docentes de disciplinas de interesse (de acordo com a norma técnica da Meta 15)
   df_filter <- df_docente %>% filter(IN_DISC_QUIMICA == 1 | IN_DISC_FISICA == 1 | IN_DISC_MATEMATICA == 1 | IN_DISC_BIOLOGIA == 1 | IN_DISC_CIENCIAS == 1 | IN_DISC_LINGUA_PORTUGUESA == 1 | IN_DISC_LINGUA_INGLES == 1 | IN_DISC_LINGUA_ESPANHOL == 1 | IN_DISC_LINGUA_FRANCES == 1 | IN_DISC_LINGUA_INDIGENA == 1 | IN_DISC_ARTES == 1 | IN_DISC_EDUCACAO_FISICA == 1 | IN_DISC_HISTORIA == 1 | IN_DISC_GEOGRAFIA == 1 | IN_DISC_FILOSOFIA == 1 | IN_DISC_ENSINO_RELIGIOSO == 1 | IN_DISC_ESTUDOS_SOCIAIS == 1 | IN_DISC_SOCIOLOGIA == 1 | IN_DISC_EST_SOCIAIS_SOCIOLOGIA == 1 )
 
@@ -74,7 +75,7 @@ calc_indicador_15B <- function(df_docente) {
   # Seleciona apenas os professores que lecionam 1 disciplina.
   df_alvo_1_disc <- df_alvo %>% filter(sum_disc == 1)
 
-  # Verifica se a disciplinas lecionada é coerente com uma das formações. Também verifica-se se a formação foi concluída
+  # Verifica se a disciplinas lecionada são coerentes com uma das formações. Também verifica-se se a formação foi concluída
   df_disc <- df_alvo_1_disc %>% mutate(disc = case_when(IN_DISC_QUIMICA == 1 ~ "QUIMICA",
                                                         IN_DISC_FISICA == 1 ~ "FISICA",
                                                         IN_DISC_MATEMATICA == 1 ~ "MATEMATICA",
@@ -103,15 +104,17 @@ calc_indicador_15B <- function(df_docente) {
     mutate(formacao_coerente = (curso1_coerente == TRUE) | (curso2_coerente == TRUE) | (curso3_coerente == TRUE) ) %>%
     mutate(formacao_coerente_e_finalizada = (curso1_coerente == TRUE & TP_SITUACAO_CURSO_1 == 1) | (curso2_coerente == TRUE & TP_SITUACAO_CURSO_2 == 1) | (curso3_coerente == TRUE & TP_SITUACAO_CURSO_3 == 1) )
 
-  # cálculo indicador 1B
+  # cálculo indicador 15B
   num_profs_alvo <- nrow(df_alvo)
   num_profs_alvo_coerente <- nrow(df_disc %>% filter(formacao_coerente == TRUE))
   num_profs_alvo_coerente_e_finalizada <- nrow(df_disc %>% filter(formacao_coerente_e_finalizada == TRUE))
   indicador_15B <- 100*num_profs_alvo_coerente_e_finalizada/num_profs_alvo
 
-  print(paste("# docentes total:", num_profs_alvo))
-  print(paste("# docentes que lecionam apenas 1 disciplina e possuem formacao adequada e finalizada:", num_profs_alvo_coerente_e_finalizada))
-  print(paste("Indicador 15B:", indicador_15B))
+  if (verbose == TRUE) {
+    print(sprintf("número docentes que lecionam apenas 1 disciplina e possuem formacao adequada e finalizada:", num_profs_alvo_coerente_e_finalizada))
+    print(sprintf("número de docentes total:", num_profs_alvo))
+    print(sprintf("Indicador 15B:", indicador_15B))
+  }
 
   return(indicador_15B)
 }

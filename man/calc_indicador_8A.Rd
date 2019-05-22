@@ -4,10 +4,12 @@
 \alias{calc_indicador_8A}
 \title{Calcula o indicador 8A: "Escolaridade média da população de 18 a 29 anos"}
 \usage{
-calc_indicador_8A(df)
+calc_indicador_8A(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 8A

@@ -4,10 +4,12 @@
 \alias{calc_indicador_11A}
 \title{Calcula o indicador 11A: "Matrículas em educação profissional técnica de nível médio"}
 \usage{
-calc_indicador_11A(df_matricula)
+calc_indicador_11A(df_matricula, verbose = TRUE)
 }
 \arguments{
 \item{df_matricula}{DataFrame com dados carregados da tabela "matricula" do Censo Escolar}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 11A

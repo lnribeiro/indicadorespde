@@ -4,7 +4,7 @@
 \alias{calc_indicador_13B}
 \title{Calcula o indicador 13B: "Percentual de funções docentes na educação superior com doutorado"}
 \usage{
-calc_indicador_13B(df_docentes, df_ies, periodo)
+calc_indicador_13B(df_docentes, df_ies, periodo, verbose = TRUE)
 }
 \arguments{
 \item{df_docentes}{DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior}
