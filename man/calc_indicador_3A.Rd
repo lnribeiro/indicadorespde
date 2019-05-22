@@ -4,10 +4,12 @@
 \alias{calc_indicador_3A}
 \title{Calcula o indicador 3A: "Percentual da população de 15 a 17 anos que frequenta a escola"}
 \usage{
-calc_indicador_3A(df)
+calc_indicador_3A(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 3A em porcentagem

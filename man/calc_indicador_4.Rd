@@ -4,10 +4,12 @@
 \alias{calc_indicador_4}
 \title{Calcula o indicador 4: "Percentual da população de 4 a 17 anos com deficiência que frequenta a escola"}
 \usage{
-calc_indicador_4(df)
+calc_indicador_4(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados do Censo Demográfico de Pernambuco}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 4 em porcentagem

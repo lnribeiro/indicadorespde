@@ -4,10 +4,12 @@
 \alias{calc_indicador_2A}
 \title{Calcula o indicador 2A: "Percentual a população de 6 a 14 anos que frequenta a escola"}
 \usage{
-calc_indicador_2A(df)
+calc_indicador_2A(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 2A em porcentagem

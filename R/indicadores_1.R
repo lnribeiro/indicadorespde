@@ -1,10 +1,11 @@
 #' Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pré-escola"
 #'
 #' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @param verbose exibe informações no console se True
 #' @return Indicador 1A em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_1A <- function(df) {
+calc_indicador_1A <- function(df, verbose = TRUE) {
   df_criancas <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, V3002, V1028, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
@@ -17,16 +18,23 @@ calc_indicador_1A <- function(df) {
   total_criancas_4_5_anos_ponderado <- sum(df_criancas$V1028)
   indicador_1A <- (total_criancas_4_5_anos_escola_ponderado/total_criancas_4_5_anos_ponderado)*100
 
+  if (verbose == TRUE) {
+    print(sprintf("Total de crianças de 4 a 5 anos na escola: %f", total_criancas_4_5_anos_escola_ponderado))
+    print(sprintf("Total de crianças de 4 a 5 anos: %f", total_criancas_4_5_anos_ponderado))
+    print(sprintf("Indicador 1A: %f", indicador_1A))
+  }
+
   return(indicador_1A)
 }
 
 #' Calcula o indicador 1B: "Percentual da população de 0 a 3 anos que frequenta a escola"
 #'
 #' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @param verbose exibe informações no console se True
 #' @return Indicador 1B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_1B <- function(df) {
+calc_indicador_1B <- function(df, verbose = TRUE) {
   df_criancas <- df %>% select(Ano, UF, Capital, RM_RIDE, V20082,V1023, V3003, V2007, V2009, V3002, V1028, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
@@ -37,6 +45,12 @@ calc_indicador_1B <- function(df) {
   total_criancas_0_3_anos_escola_ponderado <- sum(as.numeric(df_criancas_escola$V1028))
   total_criancas_0_3_anos_ponderado <- sum(as.numeric(df_criancas$V1028))
   indicador_1B <- (total_criancas_0_3_anos_escola_ponderado/total_criancas_0_3_anos_ponderado)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("Total de crianças de 0 a 3 anos na escola: %f", total_criancas_0_3_anos_escola_ponderado))
+    print(sprintf("Total de crianças de 0 a 3 anos: %f", total_criancas_0_3_anos_ponderado))
+    print(sprintf("Indicador 1B: %f", indicador_1B))
+  }
 
   return(indicador_1B)
 }

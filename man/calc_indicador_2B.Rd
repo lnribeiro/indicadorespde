@@ -4,10 +4,12 @@
 \alias{calc_indicador_2B}
 \title{Calcula o indicador 2B: "Percentual de pessoas de 16 anos com pelo menos o ensino fundamental concluído"}
 \usage{
-calc_indicador_2B(df)
+calc_indicador_2B(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 2B em porcentagem

@@ -4,10 +4,12 @@
 \alias{calc_indicador_1A}
 \title{Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pré-escola"}
 \usage{
-calc_indicador_1A(df)
+calc_indicador_1A(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 1A em porcentagem

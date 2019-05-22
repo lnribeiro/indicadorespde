@@ -4,10 +4,12 @@
 \alias{calc_indicador_3B}
 \title{Calcula o indicador 3B: "Taxa líquida de matrícula no Ensino Médio"}
 \usage{
-calc_indicador_3B(df)
+calc_indicador_3B(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 3B em porcentagem

@@ -4,10 +4,12 @@
 \alias{calc_indicador_1B}
 \title{Calcula o indicador 1B: "Percentual da população de 0 a 3 anos que frequenta a escola"}
 \usage{
-calc_indicador_1B(df)
+calc_indicador_1B(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 1B em porcentagem
