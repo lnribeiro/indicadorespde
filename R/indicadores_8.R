@@ -16,15 +16,23 @@ calc_indicador_8A <- function(df, verbose = TRUE) {
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
   total_anos_populacao_ponderado <- sum(df_alvo$V1028)
-  indicador_8A <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+  indicador_8A_ponderado <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+
+  total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
+  total_anos_populacao <- nrow(df_alvo)
+  indicador_8A <- total_anos_estudo/total_anos_populacao
 
   if (verbose == TRUE) {
     print(sprintf("Total de anos de estudo (ponderado): %f", total_anos_estudo_ponderado))
     print(sprintf("Total da população (ponderado): %f", total_anos_populacao_ponderado))
+    print(sprintf("Indicador 8A (ponderado): %f", indicador_8A_ponderado))
+
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo))
+    print(sprintf("Total da população: %f", total_anos_populacao))
     print(sprintf("Indicador 8A: %f", indicador_8A))
   }
 
-  return(indicador_8A)
+  return(indicador_8A_ponderado)
 }
 
 #' Calcula o indicador 8B: "Escolaridade média da população de 18 a 29 anos de idade residentes em áreas com habitantes de menor escolaridade"
@@ -44,15 +52,23 @@ calc_indicador_8B <- function(df, verbose = TRUE) {
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
   total_anos_populacao_ponderado <- sum(df_alvo$V1028)
-  indicador_8B <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+  indicador_8B_ponderado <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+
+  total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
+  total_anos_populacao <- nrow(df_alvo)
+  indicador_8B <- total_anos_estudo/total_anos_populacao
 
   if (verbose == TRUE) {
     print(sprintf("Total de anos de estudo (ponderado): %f", total_anos_estudo_ponderado))
     print(sprintf("Total da população (ponderado): %f", total_anos_estudo_ponderado))
+    print(sprintf("Indicador 8B (ponderado): %f", indicador_8B_ponderado))
+
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo))
+    print(sprintf("Total da população: %f", total_anos_populacao))
     print(sprintf("Indicador 8B: %f", indicador_8B))
   }
 
-  return(indicador_8B)
+  return(indicador_8B_ponderado)
 }
 
 #' Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"
@@ -83,15 +99,23 @@ calc_indicador_8C <- function(df_anual, verbose = TRUE) {
 
   total_anos_estudo_ponderado <- sum(df_alvo$anos_estudo_ponderado)
   total_anos_populacao_ponderado <- sum(df_alvo$V1032)
-  indicador_8C <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+  indicador_8C_ponderado <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
+
+  total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
+  total_anos_populacao <- nrow(df_alvo$V1032)
+  indicador_8C <- total_anos_estudo/total_anos_populacao
 
   if (verbose == TRUE) {
     print(sprintf("Total de anos de estudo (ponderado) do 1o quartil mais pobre de 18 a 29 anos: %f", total_anos_estudo_ponderado))
     print(sprintf("Total da população (ponderado) de 18 a 29 anos: %f", total_anos_populacao_ponderado))
+    print(sprintf("Indicador 8C (ponderado): %f", indicador_8C_ponderado))
+
+    print(sprintf("Total de anos de estudo do 1o quartil mais pobre de 18 a 29 anos: %f", total_anos_estudo))
+    print(sprintf("Total da população de 18 a 29 anos: %f", total_anos_populacao))
     print(sprintf("Indicador 8C: %f", indicador_8C))
   }
 
-  return(indicador_8C)
+  return(indicador_8C_ponderado)
 }
 
 #' Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"

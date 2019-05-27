@@ -111,9 +111,9 @@ calc_indicador_15B <- function(df_docente, verbose = TRUE) {
   indicador_15B <- 100*num_profs_alvo_coerente_e_finalizada/num_profs_alvo
 
   if (verbose == TRUE) {
-    print(sprintf("número docentes que lecionam apenas 1 disciplina e possuem formacao adequada e finalizada:", num_profs_alvo_coerente_e_finalizada))
-    print(sprintf("número de docentes total:", num_profs_alvo))
-    print(sprintf("Indicador 15B:", indicador_15B))
+    print(sprintf("número docentes que lecionam apenas 1 disciplina e possuem formacao adequada e finalizada: %f", num_profs_alvo_coerente_e_finalizada))
+    print(sprintf("número de docentes total: %f", num_profs_alvo))
+    print(sprintf("Indicador 15B: %f", indicador_15B))
   }
 
   return(indicador_15B)

@@ -16,15 +16,21 @@ calc_indicador_4 <- function(df, verbose = TRUE) {
 
   num_escola_ponderado <- sum(df_alvo_escola$V0010)
   num_total_ponderado <- sum(df_alvo$V0010)
-  # num_escola_ponderado <- nrow(df_alvo_escola)
-  # num_total_ponderado <- nrow(df_alvo)
-  indicador_4 <- (num_escola_ponderado/num_total_ponderado)*100
+  indicador_4_ponderado <- (num_escola_ponderado/num_total_ponderado)*100
+
+  num_escola <- nrow(df_alvo_escola)
+  num_total <- nrow(df_alvo)
+  indicador_4 <- num_escola/num_total
 
   if (verbose == TRUE) {
     print(sprintf("População (ponderada) de 4 a 17 anos com deficiência que frequenta a escola: %f", num_escola_ponderado))
     print(sprintf("População (ponderada) de 4 a 17 anos com deficiência: %f", num_total_ponderado))
+    print(sprintf("Indicador 4 (ponderado): %f", indicador_4_ponderado))
+
+    print(sprintf("População de 4 a 17 anos com deficiência que frequenta a escola: %f", num_escola))
+    print(sprintf("População de 4 a 17 anos com deficiência: %f", num_total))
     print(sprintf("Indicador 4: %f", indicador_4))
   }
 
-  return(indicador_4)
+  return(indicador_4_ponderado)
 }

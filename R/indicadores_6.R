@@ -11,12 +11,11 @@ calc_indicador_6A <- function(df_matricula, verbose = TRUE) {
                                      "NU_DURACAO_TURMA", "NU_DUR_ATIV_COMP_MESMA_REDE", "NU_DUR_ATIV_COMP_OUTRAS_REDES", "NU_DUR_AEE_MESMA_REDE", "NU_DUR_AEE_OUTRAS_REDES")
 
   # filtrar linhas
-  df_alvo <- df_cols %>%
-    # filter(TP_DEPENDENCIA %in% c(3)) %>% # Escolas públicas municipais
-    filter(TP_DEPENDENCIA %in% c(1, 2, 3)) %>% # Escolas públicas em todos os níveis (federal, estadual, municipal)
-    filter(TP_ETAPA_ENSINO %in% c(1, 2, 4, 5, 6, 7, 14, 15, 16, 17, 18, 8, 9, 10, 11, 19, 20, 21, 41, 25, 26, 27, 28, 29, 35, 36, 37, 38, 30, 31, 32, 33, 34)) %>%
-    filter(NU_DURACAO_TURMA > 0) %>%
-    filter(TP_MEDIACAO_DIDATICO_PEDAGO == 1) # Presencial
+  df_alvo <- df_cols %>% filter(TP_DEPENDENCIA %in% c(1, 2, 3))
+    # filter(TP_DEPENDENCIA %in% c(1, 2, 3)) #%>% # Escolas públicas em todos os níveis (federal, estadual, municipal)
+    # filter(TP_ETAPA_ENSINO %in% c(1, 2, 4, 5, 6, 7, 14, 15, 16, 17, 18, 8, 9, 10, 11, 19, 20, 21, 41, 25, 26, 27, 28, 29, 35, 36, 37, 38, 30, 31, 32, 33, 34)) %>%
+    # filter(NU_DURACAO_TURMA > 0) %>%
+    # filter(TP_MEDIACAO_DIDATICO_PEDAGO == 1) # Presencial
 
   # calcula jornada média do aluno e determina se a matrícula é tempo integral (7h = 419')
   df_alvo_jornada <- df_alvo %>% mutate(NU_JORNADA = NU_DURACAO_TURMA + NU_DUR_ATIV_COMP_MESMA_REDE + NU_DUR_ATIV_COMP_OUTRAS_REDES + NU_DUR_AEE_MESMA_REDE + NU_DUR_AEE_OUTRAS_REDES) %>%
@@ -52,10 +51,13 @@ calc_indicador_6B <- function(df_matricula, verbose = TRUE) {
 
   # filtrar linhas
   df_alvo <- df_cols %>%
-    # filter(TP_DEPENDENCIA %in% c(1, 2, 3)) %>% # Escolas públicas
-    filter(TP_ETAPA_ENSINO %in% c(1, 2, 4, 5, 6, 7, 14, 15, 16, 17, 18, 8, 9, 10, 11, 19, 20, 21, 41, 25, 26, 27, 28, 29, 35, 36, 37, 38, 30, 31, 32, 33, 34)) %>%
     filter(NU_DURACAO_TURMA > 0) %>%
     filter(TP_MEDIACAO_DIDATICO_PEDAGO == 1) # Presencial
+
+    # filter(TP_DEPENDENCIA %in% c(1, 2, 3)) %>% # Escolas públicas
+    # filter(TP_ETAPA_ENSINO %in% c(1, 2, 4, 5, 6, 7, 14, 15, 16, 17, 18, 8, 9, 10, 11, 19, 20, 21, 41, 25, 26, 27, 28, 29, 35, 36, 37, 38, 30, 31, 32, 33, 34)) %>%
+    # filter(NU_DURACAO_TURMA > 0) %>%
+    # filter(TP_MEDIACAO_DIDATICO_PEDAGO == 1) # Presencial
 
   # calcula jornada média do aluno e determina se a matrícula é tempo integral (7h = 419')
   df_alvo_jornada <- df_alvo %>% mutate(NU_JORNADA = NU_DURACAO_TURMA + NU_DUR_ATIV_COMP_MESMA_REDE + NU_DUR_ATIV_COMP_OUTRAS_REDES + NU_DUR_AEE_MESMA_REDE + NU_DUR_AEE_OUTRAS_REDES) %>%
