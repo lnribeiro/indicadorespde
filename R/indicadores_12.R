@@ -11,6 +11,8 @@
 #' @export
 calc_indicador_12A <- function(df, verbose = TRUE) {
   df_18_24 <- df %>% select(Ano, RM_RIDE, V1023, UF, V2009, V1028, V3003, V3003A, V3002A) %>%
+    filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
     filter(V2009 >= 18 & V2009 <= 24)
 
   df_18_24_grad <- df_18_24 %>% filter(V3003A == "08")
@@ -45,6 +47,8 @@ calc_indicador_12A <- function(df, verbose = TRUE) {
 #' @export
 calc_indicador_12B <- function(df, verbose = TRUE) {
   df_18_24_b <- df %>% select(Ano, RM_RIDE,  V1023, UF, V2009, V1028, V3003, V3003A, V3009, V3009A, V3014) %>%
+    filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
     filter(V2009 >= 18 & V2009 <= 24)
 
   df_18_24_grad_b <- df_18_24_b %>%
@@ -63,6 +67,61 @@ calc_indicador_12B <- function(df, verbose = TRUE) {
     print(sprintf("Número (ponderado) da população entre 18 a 24 anos: %f", tot_b_ponderado))
     print(sprintf("Indicador 12B: %f", indicador_12B_ponderado))
 
+    print(sprintf("Número de graduados entre 18 a 24 anos (ajustada): %f", num_b))
+    print(sprintf("Número da população entre 18 a 24 anos: %f", tot_b))
+    print(sprintf("Indicador 12B: %f", indicador_12B))
+  }
+
+  return(indicador_12B)
+}
+
+#' Calcula o indicador 12A: "Taxa de escolarização bruta na educação superior da população de 18 a 24 anos"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 12A em porcentagem
+#' @import dplyr
+#' @export
+calc_indicador_12A_anual <- function(df_anual, verbose = TRUE) {
+  df_18_24 <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
+    filter(V2009 >= 18 & V2009 <= 24)
+
+  df_18_24_grad <- df_18_24 %>% filter(V3003A == "08")
+
+  num <- nrow(df_18_24_grad)
+  tot <- nrow(df_18_24)
+  indicador_12A <- (num/tot)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("Número de graduados entre 18 a 24 anos: %f", num))
+    print(sprintf("Número da população entre 18 a 24 anos: %f", tot))
+    print(sprintf("Indicador 12A: %f", indicador_12A))
+  }
+
+  return(indicador_12A)
+}
+
+#' Calcula o indicador 12B: "Taxa de escolarização líquida ajustada na educação superior da população de 18 a 24 anos"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 12B em porcentagem
+#' @import dplyr
+#' @export
+calc_indicador_12B_anual <- function(df_anual, verbose = TRUE) {
+  df_18_24_b <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
+    filter(V2009 >= 18 & V2009 <= 24)
+
+  df_18_24_grad_b <- df_18_24_b %>%
+    filter( (V3003A == "08" | V3003A == "09" | V3003A == "10" | V3003A == "11") | (V3009A == "13" | V3009A == "14" | V3009A == "15") | (V3009A == "12" & V3014 == "1"))
+
+  num_b <- nrow(df_18_24_grad_b)
+  tot_b <- nrow(df_18_24_b)
+  indicador_12B <- (num_b/tot_b)*100
+
+  if (verbose == TRUE) {
     print(sprintf("Número de graduados entre 18 a 24 anos (ajustada): %f", num_b))
     print(sprintf("Número da população entre 18 a 24 anos: %f", tot_b))
     print(sprintf("Indicador 12B: %f", indicador_12B))

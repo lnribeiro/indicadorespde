@@ -2,18 +2,18 @@
 % Please edit documentation in R/indicadores_1.R
 \name{calc_indicador_1A}
 \alias{calc_indicador_1A}
-\title{Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pré-escola"}
+\title{Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pre-escola"}
 \usage{
 calc_indicador_1A(df, verbose = TRUE)
 }
 \arguments{
 \item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
 
-\item{verbose}{exibe informações no console se True}
+\item{verbose}{exibe informacoes no console se True}
 }
 \value{
 Indicador 1A em porcentagem
 }
 \description{
-Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pré-escola"
+Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pre-escola"
 }

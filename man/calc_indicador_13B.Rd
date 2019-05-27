@@ -12,6 +12,8 @@ calc_indicador_13B(df_docentes, df_ies, periodo, verbose = TRUE)
 \item{df_ies}{DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior}
 
 \item{periodo}{Ano do censo}
+
+\item{verbose}{exibe informações no console se True}
 }
 \value{
 Indicador 13B em porcentagem

@@ -7,9 +7,9 @@
 calc_indicador_1B(df, verbose = TRUE)
 }
 \arguments{
-\item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+\item{df}{DataFrame com dados carregados da PNAD Continua trimestral}
 
-\item{verbose}{exibe informações no console se True}
+\item{verbose}{exibe informacoes no console se True}
 }
 \value{
 Indicador 1B em porcentagem

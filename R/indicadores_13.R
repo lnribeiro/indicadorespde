@@ -40,6 +40,7 @@ calc_indicador_13A <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
 #' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
 #' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
 #' @param periodo Ano do censo
+#' @param verbose exibe informações no console se True
 #' @return Indicador 13B em porcentagem
 #' @import dplyr
 #' @export

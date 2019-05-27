@@ -115,7 +115,7 @@ calc_indicador_8C <- function(df_anual, verbose = TRUE) {
     print(sprintf("Indicador 8C: %f", indicador_8C))
   }
 
-  return(indicador_8C_ponderado)
+  return(indicador_8C)
 }
 
 #' Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"
@@ -163,6 +163,122 @@ calc_indicador_8D <- function(df, verbose = TRUE) {
     print("[População branca]")
     print(sprintf("Total de anos de estudo (ponderado): %f", total_anos_estudo_ponderado_branca))
     print(sprintf("Total da população (ponderado): %f", total_anos_populacao_ponderado_branca))
+    print(sprintf("Escolaridade média: %f", indicador_8D_branca))
+  }
+
+  indicador_8D <- (indicador_8D_preta/indicador_8D_branca)*100
+
+  if (verbose == TRUE) print(sprintf("Indicador 8D: %f", indicador_8D))
+
+  return(indicador_8D)
+}
+
+#' Calcula o indicador 8A: "Escolaridade média da população de 18 a 29 anos"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 8A
+#' @import dplyr
+#' @export
+calc_indicador_8A_anual <- function(df_anual, verbose = TRUE) {
+  # !!! VD3002 agora é VD3005 !!!
+  df_alvo <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
+    filter(V2009 >= 18 & V2009 <= 29) %>%
+    filter(VD3005 != "")
+
+  total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
+  total_anos_populacao <- nrow(df_alvo)
+  indicador_8A <- total_anos_estudo/total_anos_populacao
+
+  if (verbose == TRUE) {
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo))
+    print(sprintf("Total da população: %f", total_anos_populacao))
+    print(sprintf("Indicador 8A: %f", indicador_8A))
+  }
+
+  return(indicador_8A)
+}
+
+#' Calcula o indicador 8B: "Escolaridade média da população de 18 a 29 anos de idade residentes em áreas com habitantes de menor escolaridade"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 8B
+#' @import dplyr
+#' @export
+calc_indicador_8B_anual <- function(df_anual, verbose = TRUE) {
+  df_alvo <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1022 == 2) %>%
+    filter(V2009 >= 18 & V2009 <= 29) %>%
+    filter(VD3005 != "")
+
+  total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
+  total_anos_populacao <- nrow(df_alvo)
+  indicador_8B <- total_anos_estudo/total_anos_populacao
+
+  if (verbose == TRUE) {
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo))
+    print(sprintf("Total da população: %f", total_anos_populacao))
+    print(sprintf("Indicador 8B: %f", indicador_8B))
+  }
+
+  return(indicador_8B)
+}
+
+#' Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 8C em porcentagem
+#' @import dplyr
+#' @importFrom stats quantile
+#' @export
+calc_indicador_8C_anual <- function(df_anual, verbose = TRUE) {
+  return(calc_indicador_8C(df_anual, verbose))
+}
+
+#' Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"
+#'
+#' @param df_anual DataFrame com dados carregados da PNAD Contínua anual
+#' @param verbose exibe informações no console se True
+#' @return Indicador 8D em porcentagem
+#' @import dplyr
+#' @export
+calc_indicador_8D_anual <- function(df_anual, verbose = TRUE) {
+  ## pop. preta ##
+  df_preta <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
+    filter(V2010 == 2 | V2010 == 4) %>% # preta ou parda
+    filter(V2009 >= 18 & V2009 <= 29) %>%
+    filter(VD3005 != "")
+
+  total_anos_estudo_preta <- sum(as.numeric(df_preta$VD3005))
+  total_anos_populacao_preta <- nrow(df_preta)
+  indicador_8D_preta <- total_anos_estudo_preta/total_anos_populacao_preta
+
+  if (verbose == TRUE) {
+    print("[População preta]")
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo_preta))
+    print(sprintf("Total da população: %f", total_anos_populacao_preta))
+    print(sprintf("Escolaridade média: %f", indicador_8D_preta))
+  }
+
+  ## pop. branca ##
+  df_branca <- df_anual %>% filter(RM_RIDE == 26) %>%
+    filter(V1023 == 1) %>%
+    filter(V2010 == 1 | V2010 == 3) %>% # branca ou amarela
+    filter(V2009 >= 18 & V2009 <= 29) %>%
+    filter(VD3005 != "")
+
+  total_anos_estudo_branca <- sum(as.numeric(df_branca$VD3005))
+  total_anos_populacao_branca <- nrow(df_branca)
+  indicador_8D_branca <- total_anos_estudo_branca/total_anos_populacao_branca
+
+  if (verbose == TRUE) {
+    print("[População branca]")
+    print(sprintf("Total de anos de estudo: %f", total_anos_estudo_branca))
+    print(sprintf("Total da população: %f", total_anos_populacao_branca))
     print(sprintf("Escolaridade média: %f", indicador_8D_branca))
   }
 

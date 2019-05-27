@@ -1,7 +1,7 @@
-#' Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pré-escola"
+#' Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pre-escola"
 #'
 #' @param df DataFrame com dados carregados da PNAD Contínua trimestral
-#' @param verbose exibe informações no console se True
+#' @param verbose exibe informacoes no console se True
 #' @return Indicador 1A em porcentagem
 #' @import dplyr
 #' @export
@@ -29,8 +29,8 @@ calc_indicador_1A <- function(df, verbose = TRUE) {
 
 #' Calcula o indicador 1B: "Percentual da população de 0 a 3 anos que frequenta a escola"
 #'
-#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
-#' @param verbose exibe informações no console se True
+#' @param df DataFrame com dados carregados da PNAD Continua trimestral
+#' @param verbose exibe informacoes no console se True
 #' @return Indicador 1B em porcentagem
 #' @import dplyr
 #' @export
