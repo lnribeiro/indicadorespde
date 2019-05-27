@@ -102,7 +102,7 @@ calc_indicador_8C <- function(df_anual, verbose = TRUE) {
   indicador_8C_ponderado <- total_anos_estudo_ponderado/total_anos_populacao_ponderado
 
   total_anos_estudo <- sum(as.numeric(df_alvo$VD3005))
-  total_anos_populacao <- nrow(df_alvo$V1032)
+  total_anos_populacao <- nrow(df_alvo)
   indicador_8C <- total_anos_estudo/total_anos_populacao
 
   if (verbose == TRUE) {
