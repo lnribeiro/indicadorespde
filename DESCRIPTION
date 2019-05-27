@@ -1,11 +1,11 @@
-Package: indicadorespde
+Package: indicadorespne
 Type: Package
-Title: Calculates the Plano de Desenvolvimento Educacional (PDE) Indicators
-Version: 0.1.0
+Title: Calculates the Plano Nacional de Educação (PNE) indicators
+Version: 0.2.0
 Author@R: person("Lucas", "Nogueira Ribeiro", email = "lucasnogrib@gmail.com", role = c("aut", "cre"))
 Author: Lucas N. Ribeiro [aut, cre]
 Maintainer: Lucas N. Ribeiro <lucasnogrib@gmail.com>
-Description: Calculates the Plano de Desenvolvimento Educacional (PDE) Indicators
+Description: Calculates the Plano Nacional de Educação (PNE) indicators
 License: MIT + file LICENSE
 Imports:
   dplyr
