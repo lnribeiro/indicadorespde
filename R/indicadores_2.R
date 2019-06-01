@@ -1,12 +1,12 @@
 #' Calcula o indicador 2A: "Percentual a população de 6 a 14 anos que frequenta a escola"
 #'
-#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral (ou anual)
 #' @param verbose exibe informações no console se True
 #' @return Indicador 2A em porcentagem
 #' @import dplyr
 #' @export
 calc_indicador_2A <- function(df, verbose = TRUE) {
-  df_dummies <- df %>% select(Ano, RM_RIDE, V1023, UF, V2007, V20081, V20082, V2009, V2010, V3002, V3003A, V3008, V3009A, V3014, V1028, V1022) %>%
+  df_dummies <- df %>%
     mutate(idade_cne = V2009) %>%
     mutate(EF_regular = (V3003A == "04")) %>%
     mutate(EF_EJA = (V3003A == "05")) %>%
@@ -21,9 +21,13 @@ calc_indicador_2A <- function(df, verbose = TRUE) {
 
   df_dummies_6_14_term <- df_dummies_6_14 %>% filter(V2A == TRUE)
 
-  tot <- sum(df_dummies_6_14$V1028)
-  num <- sum(df_dummies_6_14_term$V1028)
+  num <- nrow(df_dummies_6_14_term)
+  tot <- nrow(df_dummies_6_14)
   indicador_2A <- (num/tot)*100
+
+  #tot <- sum(df_dummies_6_14$V1028)
+  #num <- sum(df_dummies_6_14_term$V1028)
+  #indicador_2A <- (num/tot)*100
 
   if (verbose == TRUE) {
     print(sprintf("População de 6 a 14 anos que frequenta a escola: %f", num))
@@ -36,13 +40,13 @@ calc_indicador_2A <- function(df, verbose = TRUE) {
 
 #' Calcula o indicador 2B: "Percentual de pessoas de 16 anos com pelo menos o ensino fundamental concluído"
 #'
-#' @param df DataFrame com dados carregados da PNAD Contínua trimestral
+#' @param df DataFrame com dados carregados da PNAD Contínua trimestral (ou anual)
 #' @param verbose exibe informações no console se True
 #' @return Indicador 2B em porcentagem
 #' @import dplyr
 #' @export
 calc_indicador_2B <- function(df, verbose = TRUE) {
-  df_dummies_b <- df %>% select(Ano, RM_RIDE, V1023, UF, V2007, V20081, V20082, V2009, V2010, V3002, V3003A, V3008, V3009A, V3014, V1028, V1022) %>%
+  df_dummies_b <- df %>%
     mutate(idade_cne = V2009) %>%
     mutate(EF_concl =  ( (  (V3003A == "06")  | (V3003A == "07")  | (V3003A == "08")  | (V3003A == "09")    | (V3003A == "10") |
                               (V3003A == "11") | (V3009A == "06")  | (V3009A == "09")  | (V3009A == "10")   | (V3009A == "11") |
@@ -54,8 +58,12 @@ calc_indicador_2B <- function(df, verbose = TRUE) {
 
   df_dummies_16_term <- df_dummies_16 %>% filter(EF_concl == TRUE)
 
-  tot_b <- sum(as.numeric(df_dummies_16$V1028))
-  num_b <- sum(as.numeric(df_dummies_16_term$V1028))
+  # tot_b <- sum(as.numeric(df_dummies_16$V1028))
+  # num_b <- sum(as.numeric(df_dummies_16_term$V1028))
+  # indicador_2B <- (num_b/tot_b)*100
+
+  num_b <- nrow(df_dummies_16_term)
+  tot_b <- nrow(df_dummies_16)
   indicador_2B <- (num_b/tot_b)*100
 
   if (verbose == TRUE) {

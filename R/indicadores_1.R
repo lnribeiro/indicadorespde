@@ -6,7 +6,7 @@
 #' @import dplyr
 #' @export
 calc_indicador_1A <- function(df, verbose = TRUE) {
-  df_criancas <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, V3002, V1028, Estrato, UPA) %>%
+  df_criancas <- df %>% select(Ano, UF, Capital, RM_RIDE, V1023, V2007, V2009, V3002, V1032, Estrato, UPA) %>%
     filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
     filter(V2009 == 4 | V2009 == 5) %>%
@@ -14,8 +14,8 @@ calc_indicador_1A <- function(df, verbose = TRUE) {
 
   df_criancas_escola <- df_criancas %>% filter(V3002 == 1)
 
-  total_criancas_4_5_anos_escola_ponderado <- sum(df_criancas_escola$V1028)
-  total_criancas_4_5_anos_ponderado <- sum(df_criancas$V1028)
+  total_criancas_4_5_anos_escola_ponderado <- sum(df_criancas_escola$V1032)
+  total_criancas_4_5_anos_ponderado <- sum(df_criancas$V1032)
   indicador_1A <- (total_criancas_4_5_anos_escola_ponderado/total_criancas_4_5_anos_ponderado)*100
 
   if (verbose == TRUE) {
