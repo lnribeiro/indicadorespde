@@ -69,3 +69,50 @@ calc_indicador_3B <- function(df, verbose = TRUE) {
 
   return(indicador_3B)
 }
+
+#' @import dplyr
+#' @export
+calc_indicador_3A_censo <- function(df_mat, df_pop, verbose = TRUE) {
+  num_mat_15_a_17 <- df_mat %>%
+    filter(NU_IDADE_REFERENCIA >= 15 & NU_IDADE_REFERENCIA <= 17) %>%
+    filter(!is.na(TP_ETAPA_ENSINO)) %>% nrow
+
+  ano <- df_mat$NU_ANO_CENSO[1]
+  colname <- paste0('X', ano)
+  num_pop_15_a_17 <- sum(df_pop[[colname]][16:18])
+
+  indicador_3A <- (num_mat_15_a_17/num_pop_15_a_17)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("num mat 15 a 17 que frequenta escola: %f", num_mat_15_a_17))
+    print(sprintf("num população 15 a 17: %f", num_pop_15_a_17))
+    print(sprintf("indicador 3A: %f", indicador_3A))
+  }
+
+  return(indicador_3A)
+}
+
+#' @import dplyr
+#' @export
+calc_indicador_3B_censo <- function(df_mat, df_pop, verbose = TRUE) {
+  ens_fund <- c(1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 41, 65, 69, 70, 72, 73)
+
+  num_mat_15_a_17 <- df_mat %>%
+    filter(NU_IDADE_REFERENCIA >= 15 & NU_IDADE_REFERENCIA <= 17) %>%
+    filter(! (TP_ETAPA_ENSINO %in% ens_fund) ) %>%
+    filter(!is.na(TP_ETAPA_ENSINO)) %>% nrow
+
+  ano <- df_mat$NU_ANO_CENSO[1]
+  colname <- paste0('X', ano)
+  num_pop_15_a_17 <- sum(df_pop[[colname]][16:18])
+
+  indicador_3B <- (num_mat_15_a_17/num_pop_15_a_17)*100
+
+  if (verbose == TRUE) {
+    print(sprintf("num mat 15 a 17 anos ens fund conc: %f", num_mat_15_a_17))
+    print(sprintf("num populacao 15 a 17 anos: %f", num_pop_15_a_17))
+    print(sprintf("indicador 3B: %f", indicador_3B))
+  }
+
+  return(indicador_3B)
+}

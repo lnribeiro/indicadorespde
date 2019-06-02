@@ -9,28 +9,34 @@
 calc_indicador <- function(indicador, arg1, arg2, arg3) {
   switch(indicador,
          "1A" = {
-           df <- arg1
-           calc_indicador_1A(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_1A_censo(df_mat, df_pop)
          },
          "1B" = {
-           df <- arg1
-           calc_indicador_1B(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_1B_censo(df_mat, df_pop)
          },
          "2A" = {
-           df <- arg1
-           calc_indicador_2A(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_2A_censo(df_mat, df_pop)
          },
          "2B" = {
-           df <- arg1
-           calc_indicador_2B(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_2B_censo(df_mat, df_pop)
          },
          "3A" = {
-           df <- arg1
-           calc_indicador_3A(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_3A_censo(df_mat, df_pop)
          },
          "3B" = {
-           df <- arg1
-           calc_indicador_3B(df)
+           df_mat <- arg1
+           df_pop <- arg2
+           calc_indicador_3B_censo(df_mat, df_pop)
          },
          "4" = {
            df <- arg1
@@ -49,53 +55,52 @@ calc_indicador <- function(indicador, arg1, arg2, arg3) {
            calc_indicador_5C(df)
          },
          "6A" = {
-           df_matricula <- arg1
-           calc_indicador_6A(df_matricula)
+           df <- arg1
+           calc_indicador_6A(df)
          },
          "6B" = {
-           df_matricula <- arg1
-           calc_indicador_6B(df_matricula)
+           df <- arg1
+           calc_indicador_6B(df)
          },
          "8A" = {
            df <- arg1
-           calc_indicador_8A(df)
+           calc_indicador_8A_anual(df)
          },
          "8B" = {
            df <- arg1
-           calc_indicador_8B(df)
+           calc_indicador_8B_anual(df)
          },
          "8C" = {
-           df_anual <- arg1
-           calc_indicador_8C(df_anual)
+           df <- arg1
+           calc_indicador_8C_anual(df)
          },
          "8D" = {
            df <- arg1
-           calc_indicador_8D(df)
+           calc_indicador_8D_anual(df)
          },
          "9A" = {
            df <- arg1
-           calc_indicador_9A(df)
+           calc_indicador_9A_anual(df)
          },
          "9B" = {
            df <- arg1
-           calc_indicador_9B(df)
+           calc_indicador_9B_anual(df)
          },
          "10" = {
-           df_matricula <- arg1
-           df_escola <- arg2
-           calc_indicador_10(df_matricula, df_escola)
+           df <- arg1
+           calc_indicador_10(df)
          },
          "11A" = {
-           df_matricula <- arg1
-           calc_indicador_11A(df_matricula)
+           df <- arg1
+           calc_indicador_11A(df)
          },
          "12A" = {
            df <- arg1
-           calc_indicador_12A(df)
+           calc_indicador_12A_anual(df)
          },
          "12B" = {
            df <- arg1
-           calc_indicador_12B(df)
+           calc_indicador_12B_anual(df)
          },
          "13A" = {
            df_docentes <- arg1
@@ -109,17 +114,17 @@ calc_indicador <- function(indicador, arg1, arg2, arg3) {
            periodo <- arg3
            calc_indicador_13B(df_docentes, df_ies, periodo)
          },
-         # "15B" = {
-         #   df_docentes <- arg1
-         #   calc_indicador_15B(df_docentes)
-         # },
+         "15B" = {
+           df <- arg1
+           calc_indicador_15B(df)
+         },
          "16" = {
-           df_docentes <- arg1
-           calc_indicador_16(df_docentes)
+           df <- arg1
+           calc_indicador_16(df)
          },
          "17" = {
            df <- arg1
-           calc_indicador_17(df)
+           calc_indicador_17_anual(df)
          }
   )
 }

@@ -7,7 +7,7 @@
 calc_indicador_2A(df, verbose = TRUE)
 }
 \arguments{
-\item{df}{DataFrame com dados carregados da PNAD Contínua trimestral}
+\item{df}{DataFrame com dados carregados da PNAD Contínua trimestral (ou anual)}
 
 \item{verbose}{exibe informações no console se True}
 }

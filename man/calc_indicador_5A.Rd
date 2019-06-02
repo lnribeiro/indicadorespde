@@ -2,18 +2,18 @@
 % Please edit documentation in R/indicadores_5.R
 \name{calc_indicador_5A}
 \alias{calc_indicador_5A}
-\title{Calcula o indicador 5A: "Taxa de estudantes com proficiência insuficiente em Leitura"}
+\title{Calcula o indicador 5A: "Taxa de estudantes com proficiencia insuficiente em Leitura"}
 \usage{
 calc_indicador_5A(df, verbose = TRUE)
 }
 \arguments{
-\item{df}{DataFrame com dados carregados da Avaliação Nacional da Alfabetização}
+\item{df}{DataFrame com dados carregados da Avaliacao Nacional da Alfabetizacao}
 
-\item{verbose}{exibe informações no console se True}
+\item{verbose}{exibe informacoes no console se True}
 }
 \value{
 Indicador 5A em porcentagem
 }
 \description{
-Calcula o indicador 5A: "Taxa de estudantes com proficiência insuficiente em Leitura"
+Calcula o indicador 5A: "Taxa de estudantes com proficiencia insuficiente em Leitura"
 }
