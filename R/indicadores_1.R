@@ -66,7 +66,7 @@ calc_indicador_1B <- function(df, verbose = TRUE) {
 calc_indicador_1A_censo <- function(df_mat, df_pop, verbose = TRUE) {
   num_mat_4_a_5 <- df_mat %>%
     filter(NU_IDADE_REFERENCIA == 4 | NU_IDADE_REFERENCIA == 5) %>%
-    filter(TP_ETAPA_ENSINO == 2) %>% nrow
+    filter(TP_ETAPA_ENSINO == 1 | TP_ETAPA_ENSINO == 2) %>% nrow
 
   ano <- df_mat$NU_ANO_CENSO[1]
   colname <- paste0('X', ano)
