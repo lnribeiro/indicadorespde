@@ -4,15 +4,7 @@
 \alias{calc_indicador_12A_anual}
 \title{Calcula o indicador 12A: "Taxa de escolarização bruta na educação superior da população de 18 a 24 anos"}
 \usage{
-calc_indicador_12A_anual(df_anual, verbose = TRUE)
-}
-\arguments{
-\item{df_anual}{DataFrame com dados carregados da PNAD Contínua anual}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 12A em porcentagem
+calc_indicador_12A_anual(df_anual, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 12A: "Taxa de escolarização bruta na educação superior da população de 18 a 24 anos"

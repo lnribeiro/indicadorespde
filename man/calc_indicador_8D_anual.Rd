@@ -4,15 +4,7 @@
 \alias{calc_indicador_8D_anual}
 \title{Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"}
 \usage{
-calc_indicador_8D_anual(df_anual, verbose = TRUE)
-}
-\arguments{
-\item{df_anual}{DataFrame com dados carregados da PNAD Contínua anual}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 8D em porcentagem
+calc_indicador_8D_anual(df_anual, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 8D: "Razão entre a escolaridade média da população negra e da população não negra de 18 a 29 anos"

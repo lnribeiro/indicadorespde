@@ -4,15 +4,7 @@
 \alias{calc_indicador_8B_anual}
 \title{Calcula o indicador 8B: "Escolaridade média da população de 18 a 29 anos de idade residentes em áreas com habitantes de menor escolaridade"}
 \usage{
-calc_indicador_8B_anual(df_anual, verbose = TRUE)
-}
-\arguments{
-\item{df_anual}{DataFrame com dados carregados da PNAD Contínua anual}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 8B
+calc_indicador_8B_anual(df_anual, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 8B: "Escolaridade média da população de 18 a 29 anos de idade residentes em áreas com habitantes de menor escolaridade"

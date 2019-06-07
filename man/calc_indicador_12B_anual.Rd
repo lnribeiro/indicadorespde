@@ -4,15 +4,7 @@
 \alias{calc_indicador_12B_anual}
 \title{Calcula o indicador 12B: "Taxa de escolarização líquida ajustada na educação superior da população de 18 a 24 anos"}
 \usage{
-calc_indicador_12B_anual(df_anual, verbose = TRUE)
-}
-\arguments{
-\item{df_anual}{DataFrame com dados carregados da PNAD Contínua anual}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 12B em porcentagem
+calc_indicador_12B_anual(df_anual, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 12B: "Taxa de escolarização líquida ajustada na educação superior da população de 18 a 24 anos"

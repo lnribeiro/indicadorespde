@@ -4,15 +4,7 @@
 \alias{calc_indicador_9B_anual}
 \title{Calcula o indicador 9B: "Taxa de analfabetismo funcional da população de 15 anos ou mais de idade"}
 \usage{
-calc_indicador_9B_anual(df_anual, verbose = TRUE)
-}
-\arguments{
-\item{df_anual}{DataFrame com dados carregados da PNAD Contínua trimestral}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 9B em porcentagem
+calc_indicador_9B_anual(df_anual, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 9B: "Taxa de analfabetismo funcional da população de 15 anos ou mais de idade"
