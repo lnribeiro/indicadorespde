@@ -4,7 +4,7 @@
 \alias{calc_indicador_8C_anual}
 \title{Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"}
 \usage{
-calc_indicador_8C_anual(df_anual, peso = FALSE, verbose = TRUE)
+calc_indicador_8C_anual(df_anual, ano, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 8C: "Escolaridade média da população de 18 a 29 anos de idade entre os 25 porcento mais pobres da população recifense"

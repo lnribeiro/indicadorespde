@@ -2,24 +2,26 @@
 #'
 #' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
 #' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
-#' @param periodo Ano do censo
+#' @param ano Ano do censo
 #' @param verbose exibe informações no console se True
 #' @return Indicador 13A em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_13A <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
-  if (periodo == 2016) {
+calc_indicador_13A <- function(df_docentes, df_ies, ano, verbose = TRUE) {
+  if (ano %in% c(2014, 2015, 2016)) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
     df_docentes_recife <- df_docentes %>% filter(CO_IES %in% CO_IES_recife) %>% select("CO_DOCENTE", "CO_SITUACAO_DOCENTE", "CO_ESCOLARIDADE_DOCENTE")
     df_alvo <- df_docentes_recife %>% filter(CO_SITUACAO_DOCENTE == 1) %>% distinct(CO_DOCENTE, .keep_all = TRUE)
     df_mest_dout <- df_alvo %>% filter(CO_ESCOLARIDADE_DOCENTE == 4 | CO_ESCOLARIDADE_DOCENTE == 5)
-  } else if (periodo == 2017) {
+  } else if (ano >= 2017) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
     df_docentes_recife <- df_docentes %>% filter(CO_IES %in% CO_IES_recife) %>% select("CO_DOCENTE", "TP_SITUACAO", "TP_ESCOLARIDADE")
     df_alvo <- df_docentes_recife %>% filter(TP_SITUACAO == 1) %>% distinct(CO_DOCENTE, .keep_all = TRUE)
     df_mest_dout <- df_alvo %>% filter(TP_ESCOLARIDADE == 4 | TP_ESCOLARIDADE == 5)
+  } else {
+    stop("Período não suportado.")
   }
 
   num_mest_dout <- nrow(df_mest_dout)
@@ -39,24 +41,26 @@ calc_indicador_13A <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
 #'
 #' @param df_docentes DataFrame com dados carregados da tabela "docentes" do Censo da Educação Superior
 #' @param df_ies DataFrame com dados carregados da tabela "ies" do Censo da Educação Superior
-#' @param periodo Ano do censo
+#' @param ano Ano do censo
 #' @param verbose exibe informações no console se True
 #' @return Indicador 13B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_13B <- function(df_docentes, df_ies, periodo, verbose = TRUE) {
-  if (periodo == 2016) {
+calc_indicador_13B <- function(df_docentes, df_ies, ano, verbose = TRUE) {
+  if (ano %in% c(2014, 2015, 2016)) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO_IES == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
     df_docentes_recife <- df_docentes %>% filter(CO_IES %in% CO_IES_recife) %>% select("CO_DOCENTE", "CO_SITUACAO_DOCENTE", "CO_ESCOLARIDADE_DOCENTE")
     df_alvo <- df_docentes_recife %>% filter(CO_SITUACAO_DOCENTE == 1) %>% distinct(CO_DOCENTE, .keep_all = TRUE)
     df_dout <- df_alvo %>% filter(CO_ESCOLARIDADE_DOCENTE == 5)
-  } else if (periodo == 2017) {
+  } else if (ano == 2017) {
     df_ies_recife <- df_ies %>% filter(CO_MUNICIPIO == 2611606)
     CO_IES_recife <- df_ies_recife$CO_IES
     df_docentes_recife <- df_docentes %>% filter(CO_IES %in% CO_IES_recife) %>% select("CO_DOCENTE", "TP_SITUACAO", "TP_ESCOLARIDADE")
     df_alvo <- df_docentes_recife %>% filter(TP_SITUACAO == 1) %>% distinct(CO_DOCENTE, .keep_all = TRUE)
     df_dout <- df_alvo %>% filter(TP_ESCOLARIDADE == 5)
+  } else {
+    stop("Período não suportado.")
   }
 
   num_dout <- nrow(df_dout)

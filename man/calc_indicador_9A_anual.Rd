@@ -4,7 +4,7 @@
 \alias{calc_indicador_9A_anual}
 \title{Calcula o indicador 9A: "Taxa de alfabetização da população de 15 anos ou mais de idade"}
 \usage{
-calc_indicador_9A_anual(df_anual, peso = FALSE, verbose = TRUE)
+calc_indicador_9A_anual(df_anual, ano, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 9A: "Taxa de alfabetização da população de 15 anos ou mais de idade"

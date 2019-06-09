@@ -1,13 +1,18 @@
 #' Calcula o indicador 5A: "Taxa de estudantes com proficiencia insuficiente em Leitura"
 #'
 #' @param df DataFrame com dados carregados da Avaliacao Nacional da Alfabetizacao
+#' @param ano período da ANA
 #' @param verbose exibe informacoes no console se True
 #' @return Indicador 5A em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_5A <- function(df, verbose = TRUE) {
-  count_lpo <-  df %>% count(NIVEL_LPO)
-  indicador_5A <- 100*(count_lpo[1,]$n)/sum(count_lpo[1:4,]$n)
+calc_indicador_5A <- function(df, ano, verbose = TRUE) {
+  if (ano %in% c(2014, 2016)) {
+    count_lpo <-  df %>% filter(ID_MUNICIPIO == "2611606") %>% count(NIVEL_LPO)
+    indicador_5A <- 100*(count_lpo[1,]$n)/sum(count_lpo[1:4,]$n)
+  } else {
+    stop("Período não suportado.")
+  }
 
   if (verbose == TRUE) {
     print(sprintf("Nivel 1 Lingua Portuguesa Leitura: %f", count_lpo[1,]$n))
@@ -23,13 +28,18 @@ calc_indicador_5A <- function(df, verbose = TRUE) {
 #' Calcula o indicador 5B: "Taxa de estudantes com proficiencia insuficiente em Escrita"
 #'
 #' @param df DataFrame com dados carregados da Avaliacao Nacional da Alfabetizacao
+#' @param ano período da ANA
 #' @param verbose exibe informacoes no console se True
 #' @return Indicador 5B em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_5B <- function(df, verbose = TRUE) {
-  count_lpd <- df %>% count(NIVEL_LPD)
-  indicador_5B <- 100*(count_lpd[1,]$n + count_lpd[2,]$n + count_lpd[3,]$n)/sum(count_lpd[1:5,]$n)
+calc_indicador_5B <- function(df, ano, verbose = TRUE) {
+  if (ano %in% c(2014, 2016)) {
+    count_lpd <- df %>% filter(ID_MUNICIPIO == "2611606") %>% count(NIVEL_LPD)
+    indicador_5B <- 100*(count_lpd[1,]$n + count_lpd[2,]$n + count_lpd[3,]$n)/sum(count_lpd[1:5,]$n)
+  } else {
+    stop("Período não disponível")
+  }
 
   if (verbose == TRUE) {
     print(sprintf("Nivel 1 Lingua Portuguesa Escrita: %f", count_lpd[1,]$n))
@@ -50,9 +60,13 @@ calc_indicador_5B <- function(df, verbose = TRUE) {
 #' @return Indicador 5C em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_5C <- function(df, verbose = TRUE) {
-  count_mt <- df %>% count(NIVEL_MT)
-  indicador_5C <- 100*(count_mt[1,]$n + count_mt[2,]$n)/sum(count_mt[1:4,]$n)
+calc_indicador_5C <- function(df, ano, verbose = TRUE) {
+  if (ano %in% c(2014, 2016)) {
+    count_mt <- df %>% filter(ID_MUNICIPIO == "2611606") %>% count(NIVEL_MT)
+    indicador_5C <- 100*(count_mt[1,]$n + count_mt[2,]$n)/sum(count_mt[1:4,]$n)
+  } else {
+    stop("Período não disponível.")
+  }
 
   if (verbose == TRUE) {
     print(sprintf("Nivel 1 Matematica: %f", count_mt[1,]$n))

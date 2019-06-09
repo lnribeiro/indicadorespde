@@ -4,17 +4,12 @@
 \alias{calc_indicador_1B_censo}
 \title{Calcula o indicador 1B: "Percentual da população de 0 a 3 anos que frequenta a escola"}
 \usage{
-calc_indicador_1B_censo(df_mat, df_pop, verbose = TRUE)
+calc_indicador_1B_censo(df_mat, df_pop, ano, verbose = TRUE)
 }
 \arguments{
-\item{df_mat}{DataFrame com dados carregados da PNAD Contínua trimestral}
+\item{df_mat}{tabela matrícula do censo escolar (a partir de 2014)}
 
-\item{df_pop}{DataFrame com dados carregados com a previsão da populacao de Recife}
-
-\item{verbose}{exibe informacoes no console se True}
-}
-\value{
-Indicador 1B em porcentagem
+\item{df_pop}{tabela com total da população fornecido pela prefeitura}
 }
 \description{
 Calcula o indicador 1B: "Percentual da população de 0 a 3 anos que frequenta a escola"

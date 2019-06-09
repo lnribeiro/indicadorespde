@@ -4,17 +4,16 @@
 \alias{calc_indicador_1A_censo}
 \title{Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pre-escola"}
 \usage{
-calc_indicador_1A_censo(df_mat, df_pop, verbose = TRUE)
+calc_indicador_1A_censo(df_mat, df_pop, ano, verbose = TRUE)
 }
 \arguments{
-\item{df_mat}{DataFrame com dados carregados da PNAD Contínua trimestral}
+\item{df_mat}{tabela matrícula do censo escolar (a partir de 2014)}
 
-\item{df_pop}{DataFrame com dados carregados com a previsão da populacao de Recife}
+\item{df_pop}{tabela com total da população fornecido pela prefeitura}
 
-\item{verbose}{exibe informacoes no console se True}
-}
-\value{
-Indicador 1A em porcentagem
+\item{ano}{ano do censo fornecido (>= 2014)}
+
+\item{verbose}{be communicative?}
 }
 \description{
 Calcula o indicador 1A: "Percentual de crianças de 4 a 5 anos na pre-escola"

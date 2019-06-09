@@ -6,17 +6,20 @@
 #'
 #' @import dplyr
 #' @export
-calc_indicador_12A_anual <- function(df_anual, peso = FALSE, verbose = TRUE) {
-  df_18_24 <- df_anual %>% filter(RM_RIDE == 26) %>%
+calc_indicador_12A_anual <- function(df_anual, ano, peso = FALSE, verbose = TRUE) {
+  df_18_24 <- df_anual %>%
+    filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
     filter(V2009 >= 18 & V2009 <= 24)
 
-  if (df_anual$Ano[1] == "2014" | df_anual$Ano[1] == "2015") {
+  if (ano %in% c(2014, 2015)) {
     df_18_24 <- df_18_24 %>% filter(!is.na(V3003))
     df_18_24_grad <- df_18_24 %>% filter(V3003 == "07")
-  } else {
+  } else if (ano >= 2016) {
     df_18_24 <- df_18_24 %>% filter(!is.na(V3003A))
     df_18_24_grad <- df_18_24 %>% filter(V3003A == "08")
+  } else {
+    stop("Período não disponível")
   }
 
   num_ponderado <- sum(df_18_24_grad$V1032)
@@ -46,19 +49,22 @@ calc_indicador_12A_anual <- function(df_anual, peso = FALSE, verbose = TRUE) {
 #'
 #' @import dplyr
 #' @export
-calc_indicador_12B_anual <- function(df_anual, peso = FALSE, verbose = TRUE) {
-  df_18_24_b <- df_anual %>% filter(RM_RIDE == 26) %>%
+calc_indicador_12B_anual <- function(df_anual, ano, peso = FALSE, verbose = TRUE) {
+  df_18_24_b <- df_anual %>%
+    filter(RM_RIDE == 26) %>%
     filter(V1023 == 1) %>%
     filter(V2009 >= 18 & V2009 <= 24)
 
-  if (df_anual$Ano[1] == "2014" | df_anual$Ano[1] == "2015") {
+  if (ano %in% c(2014, 2015)) {
     df_18_24_b <- df_18_24_b %>% filter(!is.na(V3003)) %>% filter(!is.na(V3009))
     df_18_24_grad_b <- df_18_24_b %>%
       filter( (V3003 == "07" | V3003 == "08" | V3003 == "09" ) | (V3009 == "11" | V3009 == "12" ) | (V3009 == "11" & V3014 == "1"))
-  } else {
+  } else if (ano >= 2016) {
     df_18_24_b <- df_18_24_b %>% filter(!is.na(V3003A)) %>% filter(!is.na(V3009A))
     df_18_24_grad_b <- df_18_24_b %>%
       filter( (V3003A == "08" | V3003A == "09" | V3003A == "10" | V3003A == "11") | (V3009A == "13" | V3009A == "14" | V3009A == "15") | (V3009A == "12" & V3014 == "1"))
+  } else {
+    stop("Período não suportado.")
   }
 
   num_b_ponderado <- sum(df_18_24_grad_b$V1032)

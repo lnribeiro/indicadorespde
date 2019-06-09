@@ -4,7 +4,7 @@
 \alias{calc_indicador_17_anual}
 \title{Calcula o indicador 17: "Razão entre salários dos professores da educação básica, na rede pública (não federal), e não professores, com escolaridade equivalente"}
 \usage{
-calc_indicador_17_anual(df_anual, peso = FALSE, verbose = TRUE)
+calc_indicador_17_anual(df_anual, ano, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 17: "Razão entre salários dos professores da educação básica, na rede pública (não federal), e não professores, com escolaridade equivalente"

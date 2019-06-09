@@ -4,7 +4,7 @@
 \alias{calc_indicador_9B_anual}
 \title{Calcula o indicador 9B: "Taxa de analfabetismo funcional da população de 15 anos ou mais de idade"}
 \usage{
-calc_indicador_9B_anual(df_anual, peso = FALSE, verbose = TRUE)
+calc_indicador_9B_anual(df_anual, ano, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 9B: "Taxa de analfabetismo funcional da população de 15 anos ou mais de idade"

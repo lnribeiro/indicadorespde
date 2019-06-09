@@ -1,27 +1,44 @@
 #' Calcula o indicador 10: "Percentual de matrículas de educação de jovens e adultos na forma integrada à educação profissional"
 #'
-#' @param df_matricula DataFrame com dados da tabela "matricula" carregados do Censo Escolar
-#' @param verbose exibe informações no console se True
-#' @return Indicador 10 em porcentagem
 #' @import dplyr
 #' @export
-calc_indicador_10 <- function(df_matricula, verbose = TRUE) {
-  # selecionar colunas de interesse
-  df_cols <- df_matricula %>% select("IN_EJA", "TP_ETAPA_ENSINO")
+calc_indicador_10 <- function(df_matricula, ano, verbose = TRUE) {
+  if (ano == 2014) {
+    # filtrar linhas
+    df_eja <- df_matricula %>%
+      filter(COD_MUNICIPIO_ESCOLA == 2611606) %>%
+      filter(ID_ETAPA_AGREGADA_MAT %in% c(6, 7)) # IN_EJA?
 
-  # filtrar linhas
-  df_eja <- df_cols %>% filter(IN_EJA == 1)
+    # contagem dos tipos de EJA
+    count_eja <- df_eja %>% count(FK_COD_ETAPA_ENSINO)
 
-  # contagem dos tipos de EJA
-  count_eja <- df_eja %>% count(TP_ETAPA_ENSINO)
+    # contagem das matrículas integradas ao ensino profissional
+    etapas_integradas <- c(60, 61, 62, 63, 65)
+    num_matriculas_integradas <- 0
+    for (etapa in etapas_integradas) {
+      count_eja_integrado <-  count_eja %>% filter(FK_COD_ETAPA_ENSINO == etapa)
+      if (length(count_eja_integrado$n) == 0) next
+      num_matriculas_integradas <- num_matriculas_integradas + count_eja_integrado$n
+    }
+  } else if (ano >= 2015) {
+    # filtrar linhas
+    df_eja <- df_matricula %>%
+      filter(CO_MUNICIPIO == 2611606) %>%
+      filter(IN_EJA == 1)
 
-  # contagem das matrículas integradas ao ensino profissional
-  etapas_integradas <- c(65, 67, 73, 74)
-  num_matriculas_integradas <- 0
-  for (etapa in etapas_integradas) {
-    count_eja_integrado <-  count_eja %>% filter(TP_ETAPA_ENSINO == etapa)
-    if (length(count_eja_integrado$n) == 0) next
-    num_matriculas_integradas <- num_matriculas_integradas + count_eja_integrado$n
+    # contagem dos tipos de EJA
+    count_eja <- df_eja %>% count(TP_ETAPA_ENSINO)
+
+    # contagem das matrículas integradas ao ensino profissional
+    etapas_integradas <- c(65, 67, 73, 74)
+    num_matriculas_integradas <- 0
+    for (etapa in etapas_integradas) {
+      count_eja_integrado <-  count_eja %>% filter(TP_ETAPA_ENSINO == etapa)
+      if (length(count_eja_integrado$n) == 0) next
+      num_matriculas_integradas <- num_matriculas_integradas + count_eja_integrado$n
+    }
+  } else {
+    error("Período não suportado.")
   }
 
   num_matriculas_eja <- nrow(df_eja)

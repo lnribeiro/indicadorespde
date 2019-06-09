@@ -4,7 +4,7 @@
 \alias{calc_indicador_8A_anual}
 \title{Calcula o indicador 8A: "Escolaridade média da população de 18 a 29 anos"}
 \usage{
-calc_indicador_8A_anual(df_anual, peso = FALSE, verbose = TRUE)
+calc_indicador_8A_anual(df_anual, ano, peso = FALSE, verbose = TRUE)
 }
 \description{
 Calcula o indicador 8A: "Escolaridade média da população de 18 a 29 anos"

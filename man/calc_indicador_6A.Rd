@@ -4,15 +4,7 @@
 \alias{calc_indicador_6A}
 \title{Calcula o indicador 6A: "Percentual de escolas públicas com estudantes que permanecem pelo menos 7h em atividades escolares"}
 \usage{
-calc_indicador_6A(df_matricula, verbose = TRUE)
-}
-\arguments{
-\item{df_matricula}{DataFrame com dados carregados do Censo Escolar}
-
-\item{verbose}{exibe informações no console se True}
-}
-\value{
-Indicador 6A em porcentagem
+calc_indicador_6A(df_matricula, ano, verbose = TRUE)
 }
 \description{
 Calcula o indicador 6A: "Percentual de escolas públicas com estudantes que permanecem pelo menos 7h em atividades escolares"
