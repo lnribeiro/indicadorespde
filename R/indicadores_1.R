@@ -51,11 +51,13 @@ calc_indicador_1B_censo <- function(df_mat, df_pop, ano, verbose = TRUE) {
     num_mat_0_a_3 <- df_mat %>%
       filter(COD_MUNICIPIO_ESCOLA == 2611606) %>%
       filter(NUM_IDADE_REFERENCIA <= 3) %>%
+      filter(FK_COD_ETAPA_ENSINO == 1 | FK_COD_ETAPA_ENSINO == 2) %>%
       nrow
   } else if (ano >= 2015) {
     num_mat_0_a_3 <- df_mat %>%
       filter(CO_MUNICIPIO == 2611606) %>%
       filter(NU_IDADE_REFERENCIA <= 3) %>%
+      filter(TP_ETAPA_ENSINO == 1 | TP_ETAPA_ENSINO == 2) %>%
       nrow
   } else {
     stop("Período não suportado.")
