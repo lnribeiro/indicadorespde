@@ -1,86 +1,42 @@
-#' Calcula o indicador 3A: "Percentual da população de 15 a 17 anos que frequenta a escola"
-#'
-#' @param df_mat tabela matrícula do censo escolar (a partir de 2014)
-#' @param df_pop tabela com total da população fornecido pela prefeitura
-#' @param ano ano do censo fornecido (>= 2014)
-#' @param verbose be communicative?
 #' @import dplyr
 #' @export
-calc_indicador_3A_censo <- function(df_mat, df_pop, ano, verbose = TRUE) {
-  # obter numerador
-  if (ano == 2014) {
-    num_mat_15_a_17 <- df_mat %>%
-      filter(COD_MUNICIPIO_ESCOLA == 2611606) %>%
-      filter(NUM_IDADE_REFERENCIA >= 15 & NUM_IDADE_REFERENCIA <= 17) %>%
-      filter(!is.na(FK_COD_ETAPA_ENSINO)) %>%
-      nrow
-  } else if (ano >= 2015) {
-    num_mat_15_a_17 <- df_mat %>%
-      filter(CO_MUNICIPIO == 2611606) %>%
-      filter(NU_IDADE_REFERENCIA >= 15 & NU_IDADE_REFERENCIA <= 17) %>%
-      filter(!is.na(TP_ETAPA_ENSINO)) %>%
-      nrow
-  } else {
-    stop("Período não suportado.")
-  }
+calc_indicador_3A <- function(df_pnadc_ed, verbose = TRUE) {
+  df <- df_pnadc_ed %>%
+    filter(RM_RIDE == 26) %>%
+    mutate(idade15a17 = (V2009 >= 15 & V2009 <= 17)) %>%
+    mutate(estuda = (V3002 == "1")) %>%
+    mutate(EM_concl =  ( (  (V3003A == "08")  | (V3003A == "09")    | (V3003A == "10") |
+                              (V3003A == "11")  |  (V3009A == "12") | (V3009A == "13") | (V3009A == "14") | (V3009A == "15") ) |
+                           ((V3009A == "08" & V3014 == "1") | (V3009A == "09" & V3014 == "1") | (V3009A == "10" & V3014 == "1") | (V3009A == "11" & V3014 == "1") | (V3009A == "12" & V3014 == "1")) ) ) %>%
+    mutate(V3A = ( estuda | EM_concl))
 
-  # obter denominador
-  colname <- paste0('X', ano)
-  num_pop_15_a_17 <- sum(df_pop[[colname]][16:18])
+  df_num <- df %>% filter( (idade15a17 == TRUE) & (V3A == TRUE) )
+  df_den <- df %>% filter( (idade15a17 == TRUE) )
 
-  indicador_3A <- (num_mat_15_a_17/num_pop_15_a_17)*100
-
-  if (verbose == TRUE) {
-    print(sprintf("num mat 15 a 17 que frequenta escola: %f", num_mat_15_a_17))
-    print(sprintf("num população 15 a 17: %f", num_pop_15_a_17))
-    print(sprintf("indicador 3A: %f", indicador_3A))
-  }
-
+  num <- sum(df_num$V1028)
+  den <- sum(df_den$V1028)
+  indicador_3A <- 100*num/den
   return(indicador_3A)
 }
 
-#' Calcula o indicador 3B: "Taxa líquida de matrícula no Ensino Médio"
-#'
-#' @param df_mat tabela matrícula do censo escolar (a partir de 2014)
-#' @param df_pop tabela com total da população fornecido pela prefeitura
-#' @param ano ano do censo fornecido (>= 2014)
-#' @param verbose be communicative?
 #' @import dplyr
 #' @export
-calc_indicador_3B_censo <- function(df_mat, df_pop, ano, verbose = TRUE) {
-  ens_fund14 <- c(1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 40, 41, 43, 44, 51, 60, 65)
-  ens_fund <- c(1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 41, 65, 69, 70, 72, 73)
+calc_indicador_3B <- function(df_pnadc_ed, verbose = TRUE) {
+  df <- df_pnadc_ed %>%
+    filter(RM_RIDE == 26) %>%
+    mutate(idade15a17 = (V2009 >= 15 & V2009 <= 17)) %>%
+    mutate(EM_regular = (V3003A == "06")) %>%
+    mutate(EM_EJA = (V3003A == "07")) %>%
+    mutate(EF_concl =  ( ( (V3003A == "06")  | (V3003A == "07")  | (V3003A == "08")  | (V3003A == "09") | (V3003A == "10") |
+                             (V3003A == "11") | (V3009A == "06")  | (V3009A == "09")  | (V3009A == "10")   | (V3009A == "11") |
+                             (V3009A == "12") | (V3009A == "13") | (V3009A == "14") | (V3009A == "15") ) | ((V3009A == "07" & V3014 == "1") | (V3009A == "08" & V3014 == "1")) ) ) %>%
+    mutate(V3B = (EM_regular | EM_EJA | EF_concl))
 
-  # obter numerador
-  if (ano == 2014) {
-    num_mat_15_a_17 <- df_mat %>%
-      filter(COD_MUNICIPIO_ESCOLA == 2611606) %>%
-      filter(NUM_IDADE_REFERENCIA >= 15 & NUM_IDADE_REFERENCIA <= 17) %>%
-      filter(!(FK_COD_ETAPA_ENSINO %in% ens_fund14)) %>%
-      filter(!is.na(FK_COD_ETAPA_ENSINO)) %>%
-      nrow
-  } else if (ano >= 2015) {
-    num_mat_15_a_17 <- df_mat %>%
-      filter(CO_MUNICIPIO == 2611606) %>%
-      filter(NU_IDADE_REFERENCIA >= 15 & NU_IDADE_REFERENCIA <= 17) %>%
-      filter(! (TP_ETAPA_ENSINO %in% ens_fund) ) %>%
-      filter(!is.na(TP_ETAPA_ENSINO)) %>%
-      nrow
-  } else {
-    stop("Período não suportado.")
-  }
+  df_num <- df %>% filter( (idade15a17 == TRUE) & (V3B == TRUE) )
+  df_den <- df %>% filter( (idade15a17 == TRUE) )
 
-  # obter denominador
-  colname <- paste0('X', ano)
-  num_pop_15_a_17 <- sum(df_pop[[colname]][16:18])
-
-  indicador_3B <- (num_mat_15_a_17/num_pop_15_a_17)*100
-
-  if (verbose == TRUE) {
-    print(sprintf("num mat 15 a 17 anos ens fund conc: %f", num_mat_15_a_17))
-    print(sprintf("num populacao 15 a 17 anos: %f", num_pop_15_a_17))
-    print(sprintf("indicador 3B: %f", indicador_3B))
-  }
-
+  num <- sum(df_num$V1028)
+  den <- sum(df_den$V1028)
+  indicador_3B <- 100*num/den
   return(indicador_3B)
 }

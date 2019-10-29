@@ -9,40 +9,28 @@
 calc_indicador <- function(indicador, arg1, arg2, arg3) {
   switch(indicador,
          "1A" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_1A_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_1A(df_pnadc_ed)
          },
          "1B" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_1B_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_1B(df_pnadc_ed)
          },
          "2A" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_2A_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_2A(df_pnadc_ed)
          },
          "2B" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_2B_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_2B(df_pnadc_ed)
          },
          "3A" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_3A_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_3A(df_pnadc_ed)
          },
          "3B" = {
-           df_mat <- arg1
-           df_pop <- arg2
-           ano <- arg3
-           calc_indicador_3B_censo(df_mat, df_pop, ano)
+           df_pnadc_ed <- arg1
+           calc_indicador_3B(df_pnadc_ed)
          },
          "4" = {
            df <- arg1
